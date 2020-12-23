@@ -1,0 +1,6 @@
+*.js
+!app.js
+!db.js
+
+public
+test
