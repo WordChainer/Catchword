@@ -8,6 +8,14 @@ textarea {
     resize: none;
 }
 
+.badge {
+    cursor: pointer;
+}
+
+.list-group-item {
+    background-color: #454d55;
+}
+
 .navbar-brand {
     font-family: 'Passion One';
     font-size: 23px;

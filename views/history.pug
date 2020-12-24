@@ -1,0 +1,16 @@
+extends layout
+
+block Content
+    .content
+        main
+            .container-fluid
+                .row
+                    .col-md-12.my-3
+                        ul.list-group.list-group-flush
+                            each editLog in editLogs
+                                - var { date, user, words, action } = editLog;
+
+                                li.list-group-item.text-white= '[' + moment(date).add(9, 'h').format('YYYY-MM-DD HH:mm:ss') + '] ' + user + '님이 '
+                                    span.badge.badge-dark.p-2.m-1(data-toggle="tooltip" data-html="true" title=`${words.join(', ')}`)= words.length + "개"
+                                    span= '의 단어를 ' + (action === 'add' ? '추가' : '삭제') + '하였습니다.'
+

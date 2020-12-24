@@ -38,14 +38,14 @@ html(lang="ko")
                                 i.fas.fa-search.fa-lg.mr-2.text-secondary
                                 span.text 단어검색
                         li.nav-item
-                            a.nav-link.p-3(href="#" data-toggle="modal" data-target="#editor")
+                            a.nav-link.p-3(data-toggle="modal" data-target="#editor")
                                 i.fas.fa-edit.fa-lg.mr-2.text-secondary
                                 span.text 단어편집
+                        li.nav-item
+                            a.nav-link.p-3(href="/history")
+                                i.fas.fa-history.fa-lg.mr-2.text-secondary
+                                span.text 작업기록
                         //-
-                            li.nav-item
-                                a.nav-link.p-3(href="/history")
-                                    i.fas.fa-history.fa-lg.mr-2.text-secondary
-                                    span.text 작업기록
                             li.nav-item
                                 a.nav-link.p-3(href="/leaderboard")
                                     i.fas.fa-trophy.fa-lg.mr-2.text-secondary

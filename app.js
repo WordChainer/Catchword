@@ -10,12 +10,13 @@ const passport      = require('passport');
 const bodyParser    = require('body-parser');
 
 const routers = {
-    add:    require('./routes/add.js'),
-    delete: require('./routes/delete.js'),
-    index:  require('./routes/index.js'),
-    login:  require('./routes/login.js'),
-    logout: require('./routes/logout.js'),
-    search: require('./routes/search.js')
+    add:     require('./routes/add.js'),
+    delete:  require('./routes/delete.js'),
+    history: require('./routes/history.js'),
+    index:   require('./routes/index.js'),
+    login:   require('./routes/login.js'),
+    logout:  require('./routes/logout.js'),
+    search:  require('./routes/search.js')
 };
 
 const {
@@ -28,7 +29,7 @@ app
     .set('views', path.join(__dirname, '/views'))
     .set('view engine', 'pug')
     .use(express.static(path.join(__dirname, 'public')))
-    .use(favicon(path.join(__dirname, 'public/image', 'favicon.ico')))
+    .use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
     .use(session({
@@ -49,4 +50,5 @@ app
     .use('/search', routers.search)
     .use('/add', routers.add)
     .use('/delete', routers.delete)
+    .use('/history', routers.history)
     .listen(port, () => console.log(`Connected to ${host}${port == 80 ? '' : `:${port}`}`));
