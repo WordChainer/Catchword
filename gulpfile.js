@@ -1,7 +1,10 @@
 const gulp  = require('gulp');
 const minifyJS = require('gulp-uglify-es').default;
 const minifyCSS = require('gulp-clean-css');
+const sass = require('gulp-sass');
 const rename = require('gulp-rename');
+
+sass.compiler = require('node-sass');
 
 gulp.task('minify-js', () => {
     return gulp.src('lib/js/*.js')
@@ -11,7 +14,8 @@ gulp.task('minify-js', () => {
 });
 
 gulp.task('minify-css', () => {
-    return gulp.src('lib/css/*.css')
+    return gulp.src('lib/scss/*.scss')
+        .pipe(sass().on('error', sass.logError))
         .pipe(minifyCSS())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/css'));
@@ -19,7 +23,7 @@ gulp.task('minify-css', () => {
 
 gulp.task('watch', () => {
     gulp.watch('lib/js/*.js', gulp.series('minify-js'));
-    gulp.watch('lib/css/*.css', gulp.series('minify-css'));
+    gulp.watch('lib/scss/*.scss', gulp.series('minify-css'));
 });
 
 gulp.task('default', gulp.series('minify-js', 'minify-css'));
