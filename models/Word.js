@@ -64,7 +64,7 @@ Word.statics.search = async function({ keyword, length, user }) {
     keyword = keyword.replace(/\s/g, '');
 
     if (keyword === '' || /^\.{1,3}$/.test(keyword)) {
-        return;
+        return [];
     }
 
     SearchLog.addLog(keyword, user);
