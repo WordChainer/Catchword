@@ -100,10 +100,20 @@ html(lang="ko")
                                         span.text-dark 삭제
                             #nav-tabContent.tab-content
                                 #nav-add.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="nav-home-tab")
-                                    textarea.form-control.mb-2(rows="15" style="min-width: 100%")
+                                    .input-group.mb-2
+                                        .input-group-prepend
+                                            .input-group-text
+                                                input.mr-1(type="checkbox")
+                                                span 숨김
+                                        input.form-control(type="text")
+                                        .input-group-append
+                                            button.btn.btn-danger.delete-field
+                                                i.fa.fa-trash
+                                    button.btn.btn-sm.btn-secondary.mb-2.float-right.add-field 생성
+                                    br
                                     button#add.btn.btn-lg.btn-success(type="button") 추가
                                 #nav-delete.tab-pane.fade(role="tabpanel" aria-labelledby="nav-profile-tab")
-                                    textarea.form-control.mb-2(rows="15" style="min-width: 100%")
+                                    textarea.form-control.mb-2(rows="10" style="min-width: 100%")
                                     button#delete.btn.btn-lg.btn-danger(type="button") 삭제
 
             .content.vh-100
