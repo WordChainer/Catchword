@@ -12,10 +12,10 @@ router.post('/', async (req, res) => {
     let words = JSON.parse(req.body['words[]'])
         .filter(word => /^[가-힣]{2,3}$/.test(word))
         .map(word => ({ value: word, length: word.length, user: user._id }));
-    let { result, added } = await WordModel.add(words);
-    
+    let { result, values } = await WordModel.add(words);
+
     if (result === 'success') {
-        res.send(`${added.join('\n')}\n\n${added.length}개의 단어가 추가되었습니다.`);
+        res.send(`${values.join('\n')}\n\n${values.length}개의 단어가 추가되었습니다.`);
     } else if (result === 'fail') {
         res.status(400).send({ message: '이미 데이터베이스에 존재하는 단어가 있습니다.' });
     }

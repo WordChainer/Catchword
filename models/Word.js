@@ -35,30 +35,30 @@ const Word = new Schema({
 Word.statics.add = async function(words) {
     try {
         let docs = await this.insertMany(words),
-            added = docs.map(doc => doc.value);
+            values = docs.map(doc => doc.value);
         let user = await User.findOne({ _id: words[0].user._id });
 
-        EditLog.addLog('add', added, user.nickname);
+        EditLog.addLog('add', values, user.nickname, docs.map(doc => doc._id));
 
-        return ({ result: 'success', added });
+        return ({ result: 'success', values });
     } catch (err) {
-        return ({ result: 'fail', added: [] });
+        return ({ result: 'fail', values: [] });
     }
 };
 
 Word.statics.delete = async function(words) {
     try {
         let res = await this.deleteMany({ value: { $in: words.map(word => word.value) } }),
-            deleted = words.map(word => word.value);
+            values = words.map(word => word.value);
         let user = await User.findOne({ _id: words[0].user._id });
         
-        EditLog.addLog('delete', deleted, user.nickname);
+        EditLog.addLog('delete', values, user.nickname);
 
-        return ({ result: 'success', deleted });
+        return ({ result: 'success', values });
     } catch (err) {
         console.log(err);
 
-        return ({ result: 'fail', deleted: [] });
+        return ({ result: 'fail', values: [] });
     }
 };
 

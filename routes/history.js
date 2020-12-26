@@ -7,6 +7,10 @@ router.get('/', async (req, res) => {
         moment: require('moment'),
         editLogs: await EditLogModel
             .find()
+            .populate({
+                path: 'words',
+                select: 'isHidden'
+            })
             .sort({ date: -1 })
     });
 });

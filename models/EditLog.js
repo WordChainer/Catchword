@@ -7,8 +7,11 @@ const EditLog = new Schema({
         match: /^(add|delete)$/
     },
     words: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Word'
+    }],
+    values: [{
         type: String,
-        required: true,
         match: /^[가-힣]{2,3}$/
     }],
     date: {
@@ -19,10 +22,12 @@ const EditLog = new Schema({
         type: String,
         required: true
     }
+}, {
+    versionKey: false
 });
 
-EditLog.statics.addLog = async function(action, words, user) {
-    await this.create({ action, words, user });
+EditLog.statics.addLog = async function(action, values, user, words = []) {
+    await this.create({ action, values, user, words });
 };
 
 module.exports = model('EditLog', EditLog, 'editLogs');
