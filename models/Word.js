@@ -84,7 +84,8 @@ Word.statics.search = async function({ keyword, length, user }) {
         .find({
             $and: [
                 { length },
-                { value: { $regex: rgx } }
+                { value: { $regex: rgx } },
+                { isHidden: false }
             ]
         })
         .populate({
