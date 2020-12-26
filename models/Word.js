@@ -17,6 +17,10 @@ const Word = new Schema({
         min: 2,
         max: 3
     },
+    isHidden: {
+        type: Boolean,
+        default: false
+    },
     date: {
         type: Date,
         default: Date.now

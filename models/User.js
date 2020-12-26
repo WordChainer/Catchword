@@ -17,6 +17,14 @@ const User = Schema({
         type: String,
         required: true
     },
+    isAdmin: {
+        type: Boolean,
+        defualt: false
+    },
+    isBanned: {
+        type: Boolean,
+        default: false
+    },
     score: {
         type: Number,
         default: 0
