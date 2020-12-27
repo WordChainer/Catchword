@@ -75,8 +75,10 @@ Word.statics.search = async function({ keyword, length, user }) {
 
     if (/^-/.test(keyword)) {
         reverse = true;
-        keyword = keyword.match(/[가-힣]+/)[0];
+        keyword = keyword.match(/(?<=-).+/)[0];
     }
+
+    keyword = keyword.replace(/[ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ]/g, makeHangulRange);
 
     let rgx = keyword.includes('.') ? `^${keyword}$` : reverse ? `${keyword}$` : `^${keyword}`;
 
@@ -100,5 +102,15 @@ Word.statics.search = async function({ keyword, length, user }) {
         })
         .sort({ value: 1 });
 };
+
+function hangulAssemble(ca, cb, cc) {
+    return String.fromCharCode(ca * 588 + cb * 28 + cc + 44032);
+}
+
+function makeHangulRange(jaum) {
+    let code = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ'.indexOf(jaum);
+
+    return `[${hangulAssemble(code, 0, 0)}-${hangulAssemble(code, 20, 27)}]`;
+}
 
 module.exports = model('Word', Word, 'words');
