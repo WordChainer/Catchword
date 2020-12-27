@@ -45,33 +45,33 @@ html(lang="ko")
                     ul.navbar-nav.pt-1
                         li.nav-item
                             a.nav-link.p-3(href="/")
-                                i.fas.fa-search.fa-lg.mr-2.text-secondary
+                                i.fas.fa-search.fa-lg.mx-2.text-secondary
                                 span.text 단어검색
                         li.nav-item
                             a.nav-link.p-3(data-toggle="modal" data-target="#editor")
-                                i.fas.fa-edit.fa-lg.mr-2.text-secondary
+                                i.fas.fa-edit.fa-lg.mx-2.text-secondary
                                 span.text 단어편집
                         li.nav-item
                             a.nav-link.p-3(href="/history")
-                                i.fas.fa-history.fa-lg.mr-2.text-secondary
+                                i.fas.fa-history.fa-lg.mx-2.text-secondary
                                 span.text 작업기록
                         //-
                             li.nav-item
                                 a.nav-link.p-3(href="/leaderboard")
-                                    i.fas.fa-trophy.fa-lg.mr-2.text-secondary
+                                    i.fas.fa-trophy.fa-lg.mx-2.text-secondary
                                     span.text 랭킹
                         li.nav-item
                             a.nav-link.p-3(href="https://github.com/xCrypt0r", target="_blank")
-                                i.fab.fa-github.fa-lg.mr-2.text-secondary
+                                i.fab.fa-github.fa-lg.mx-2.text-secondary
                                 span.text 개발자 깃허브
                         li.nav-item
                             if !isAuthenticated
                                 a.nav-link.p-3(href="/login")
-                                    i.fas.fa-sign-in-alt.fa-lg.mr-2.text-secondary
+                                    i.fas.fa-sign-in-alt.fa-lg.mx-2.text-secondary
                                     span.text 로그인
                             else
                                 a.nav-link.p-3(href="/logout")
-                                    i.fas.fa-sign-out-alt.fa-lg.mr-2.text-secondary
+                                    i.fas.fa-sign-out-alt.fa-lg.mx-2.text-secondary
                                     span.text 로그아웃
             #loader.modal(tabindex="-1" role="dialog")
                 .modal-dialog.modal-dialog-centered.modal-sm(role="document")
