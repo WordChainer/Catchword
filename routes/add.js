@@ -10,11 +10,11 @@ router.post('/', async (req, res) => {
 
     let user = await UserModel.findUser(req.session.user.id);
     let words = JSON.parse(req.body['words[]'])
-        .filter(word => /^[가-힣]{2,3}$/.test(word.value))
+        .filter(word => /^[가-힣]{2,3}$/.test(word.value.trim()))
         .map(word => {
             let { value, isHidden } = word;
 
-            return { value, length: value.length, user: user._id, isHidden };
+            return { value: value.trim(), length: value.length, user: user._id, isHidden };
         });
     let { result, values } = await WordModel.add(words);
 

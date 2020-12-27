@@ -71,6 +71,10 @@ Word.statics.search = async function({ keyword, length, user }) {
         return [];
     }
 
+    if (!/^-?[ㄱ-ㅎ가-힣.]+$/.test(keyword)) {
+        return [];
+    }
+
     SearchLog.addLog(keyword, user);
 
     if (/^-/.test(keyword)) {
