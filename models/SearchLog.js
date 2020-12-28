@@ -18,9 +18,7 @@ const SearchLog = new Schema({
 });
 
 SearchLog.statics.addLog = async function(keyword, user) {
-    let _user = await User.findUser(user.id)
-
-    await this.create({ keyword, user: _user._id });
+    await this.create({ keyword, user: user._id });
 };
 
 module.exports = model('SearchLog', SearchLog, 'searchLogs');

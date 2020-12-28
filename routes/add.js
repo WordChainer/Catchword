@@ -14,7 +14,9 @@ router.post('/', async (req, res) => {
         .map(word => {
             let { value, isHidden } = word;
 
-            return { value: value.trim(), length: value.length, user: user._id, isHidden };
+            value = value.trim();
+
+            return { value, length: value.length, user: user._id, isHidden };
         });
     let { result, values } = await WordModel.add(words);
 

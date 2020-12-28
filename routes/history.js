@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
                 select: 'isHidden'
             }, {
                 path: 'user',
-                select: 'nickname'
+                select: 'nickname isAdmin'
             }])
             .sort({ date: -1 })
     });

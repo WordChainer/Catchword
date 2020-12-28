@@ -11,7 +11,7 @@ block Content
                                 var { date, user, values, action, words } = editLog;
                             
                                 if (action === 'add') {
-                                    values = values.map((value, i) => words[i]?.isHidden ? '[비공개]' : value);
+                                    values = values.map((value, i) => words[i]?.isHidden && !user.isAdmin ? '[비공개]' : value);
                                 }
 
                             li.list-group-item.text-white= '[' + moment(date).add(9, 'h').format('YYYY-MM-DD HH:mm:ss') + '] ' + user.nickname + '님이 '

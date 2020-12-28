@@ -84,15 +84,19 @@ Word.statics.search = async function({ keyword, length, user }) {
 
     keyword = keyword.replace(/[ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ]/g, makeHangulRange);
 
-    let rgx = keyword.includes('.') ? `^${keyword}$` : reverse ? `${keyword}$` : `^${keyword}`;
+    let rgx = keyword.includes('.') ? `^${keyword}$` : reverse ? `${keyword}$` : `^${keyword}`,
+        conditions = [
+            { length },
+            { value: { $regex: rgx } }
+        ];
+
+    if (!user.isAdmin) {
+        conditions.push({ isHidden: false });
+    }
 
     return await this
         .find({
-            $and: [
-                { length },
-                { value: { $regex: rgx } },
-                { isHidden: false }
-            ]
+            $and: conditions
         })
         .populate({
             path: 'user',

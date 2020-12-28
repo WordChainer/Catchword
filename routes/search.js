@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const UserModel = require('../models/User.js');
 const WordModel = require('../models/Word.js');
 
 router.post('/', async (req, res) => {
@@ -7,7 +8,9 @@ router.post('/', async (req, res) => {
         return res.status(400).send({ message: '로그인 후 이용가능합니다!' });
     }
 
-    req.body.user = req.session.user;
+    let user = await UserModel.findUser(req.session.user.id);
+
+    req.body.user = user;
 
     res.json(await WordModel.search(req.body));
 });
