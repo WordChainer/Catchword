@@ -1,0 +1,35 @@
+extends layout
+
+block Content
+    main
+        .container-fluid
+            .row
+                .col-md-12.my-3
+                    .input-group.mt-3
+                        input.form-control#keyword(type='text' placeholder='검색할 내용을 입력하세요!' autofocus)
+                        .input-group-append
+                            button.btn.btn-secondary#search(type='button')
+                                i.fa.fa-search
+                .col-md-12(align="center")
+                    .custom-control.custom-radio.custom-control-inline
+                        input#optionWord3.custom-control-input(type="radio" name="wordLength" value="3" checked)
+                        label.custom-control-label(for="optionWord3") 3-3 단어
+                    .custom-control.custom-radio.custom-control-inline
+                        input#optionWord2.custom-control-input(type="radio" name="wordLength" value="2")
+                        label.custom-control-label(for="optionWord2") 3-2 단어
+                .col-md-12.ml-2.mt-3
+                    #count
+                        b 0
+                        | 개의 단어가 검색되었습니다!
+                .col-md-12.my-3
+                    table.table.table-dark#result
+                        thead
+                            tr
+                                th 단어
+                                th 등록자
+                                th 날짜
+                        tbody
+
+block JS
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js")
+    script(src="../js/search.min.js")

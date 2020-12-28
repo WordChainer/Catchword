@@ -13,10 +13,10 @@ const routers = {
     add:     require('./routes/add.js'),
     delete:  require('./routes/delete.js'),
     history: require('./routes/history.js'),
-    index:   require('./routes/index.js'),
     login:   require('./routes/login.js'),
     logout:  require('./routes/logout.js'),
-    search:  require('./routes/search.js')
+    search:  require('./routes/search.js'),
+    index:    require('./routes/index.js')
 };
 
 const {

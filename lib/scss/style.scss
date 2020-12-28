@@ -13,6 +13,28 @@ textarea {
     resize: none;
 }
 
+.counter {
+    display: block;
+    font-size: 32px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 28px;
+    &-box {
+        margin: 5px 5px;
+        padding: 35px 10px 20px;
+        border: 1px solid $matt-gray;
+        background-color: transparent;
+        text-align: center;
+        p {
+            margin-top: 15px;
+            padding: 0;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
 .badge {
     cursor: pointer;
 }
