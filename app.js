@@ -19,6 +19,8 @@ const routers = {
     index:    require('./routes/index.js')
 };
 
+const UserModel = require('./models/User.js');
+
 const {
     CATCHWORD_HOST: host,
     CATCHWORD_PORT: port = 80,
@@ -39,8 +41,14 @@ app
     }))
     .use(passport.initialize())
     .use(passport.session())
-    .use((req, res, next) => {
+    .use(async (req, res, next) => {
         res.locals.session = req.session;
+
+        if (req.session.passport) {
+            let user = await UserModel.findUser(req.session.user.id);
+
+            res.locals.isAdmin = user.isAdmin;
+        }
 
         next();
     })
