@@ -40,10 +40,14 @@ User.statics.findUser = async function(id) {
 };
 
 User.statics.addUser = async function(user) {
-    if (!await this.findOne({ id: user.id })) {
+    let { id, nickname, profile_image } = user;
+
+    if (!await this.findOne({ id: id })) {
         await this.create(user, (err, doc) => {
             return true;
         });
+    } else {
+        await this.updateOne({ id: id }, { $set: { nickname, profile_image } });
     }
 
     return false;
