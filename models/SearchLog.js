@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const User = require('./User.js');
 
 const SearchLog = new Schema({
     keyword: {
@@ -10,13 +11,16 @@ const SearchLog = new Schema({
         default: Date.now
     },
     user: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
     }
 });
 
 SearchLog.statics.addLog = async function(keyword, user) {
-    await this.create({ keyword, user });
+    let _user = await User.findUser(user.id)
+
+    await this.create({ keyword, user: _user._id });
 };
 
 module.exports = model('SearchLog', SearchLog, 'searchLogs');
