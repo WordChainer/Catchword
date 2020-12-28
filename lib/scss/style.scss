@@ -17,6 +17,10 @@ textarea {
     cursor: pointer;
 }
 
+.tooltip-inner {
+    word-break: keep-all;
+}
+
 .list-group-item {
     background-color: #454d55;
 }
