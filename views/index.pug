@@ -4,22 +4,11 @@ block Content
     main
         .container-fluid
             .row.no-gutters.mt-3
-                .col-sm-3.col-6
-                    .counter-box
-                        span.counter= counts[0]
-                        p 전체 단어
-                .col-sm-3.col-6
-                    .counter-box
-                        span.counter= counts[1]
-                        p 숨겨진 단어
-                .col-sm-3.col-6
-                    .counter-box
-                        span.counter= counts[2]
-                        p 3-3 단어
-                .col-sm-3.col-6
-                    .counter-box
-                        span.counter= counts[3]
-                        p 3-2 단어
+                each text, i in ['전체 단어', '숨겨진 단어', '3-3 단어', '3-2 단어']
+                    .col-sm-3.col-6
+                        .counter-box
+                            span.counter= counts[i]
+                            p= text
 
 block JS
     script(src="../js/index.min.js")
