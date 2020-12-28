@@ -2,6 +2,7 @@ const gulp  = require('gulp');
 const minifyJS = require('gulp-uglify-es').default;
 const minifyCSS = require('gulp-clean-css');
 const sass = require('gulp-sass');
+const imagemin = require('gulp-image');
 const rename = require('gulp-rename');
 
 sass.compiler = require('node-sass');
@@ -19,6 +20,12 @@ gulp.task('minify-css', () => {
         .pipe(minifyCSS())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('public/css'));
+});
+
+gulp.task('minify-image', () => {
+    return gulp.src('public/images/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('public/images'));
 });
 
 gulp.task('watch', () => {
