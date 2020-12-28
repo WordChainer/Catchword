@@ -3,7 +3,25 @@ extends layout
 block Content
     main
         .container-fluid
-            .row.no-gutters.mt-3
+            .row.mt-2
+                .col-md-12
+                    #slide.carousel.slide(data-ride="carousel")
+                        ul.carousel-indicators
+                            li.active(data-target="#slide" data-slide-to="0")
+                            li(data-target="#slide" data-slide-to="1")
+                            li(data-target="#slide" data-slide-to="2")
+                        .carousel-inner
+                            .carousel-item.active
+                                img(src="images/slide1.png" alt="1")
+                            .carousel-item
+                                img(src="images/slide2.png" alt="2")
+                            .carousel-item
+                                img(src="images/slide3.png" alt="3")
+                        a.carousel-control-prev(href="#slide" data-slide="prev")
+                            span.carousel-control-prev-icon
+                        a.carousel-control-next(href="#slide" data-slide="next")
+                            span.carousel-control-next-icon
+            .row.no-gutters.mt-2
                 each text, i in ['전체 단어', '숨겨진 단어', '3-3 단어', '3-2 단어']
                     .col-sm-3.col-6
                         .counter-box
