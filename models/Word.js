@@ -38,7 +38,7 @@ Word.statics.add = async function(words) {
             values = docs.map(doc => doc.value);
         let user = await User.findOne({ _id: words[0].user._id });
 
-        EditLog.addLog('add', values, user.nickname, docs.map(doc => doc._id));
+        EditLog.addLog('add', values, user._id, docs.map(doc => doc._id));
 
         return ({ result: 'success', values });
     } catch (err) {
@@ -52,7 +52,7 @@ Word.statics.delete = async function(words) {
             values = words.map(word => word.value);
         let user = await User.findOne({ _id: words[0].user._id });
         
-        EditLog.addLog('delete', values, user.nickname);
+        EditLog.addLog('delete', values, user._id);
 
         return ({ result: 'success', values });
     } catch (err) {
