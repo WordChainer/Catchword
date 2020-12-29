@@ -5,3 +5,12 @@
 
     var isAuthenticated = !!SESSION.passport;
     var user = SESSION.user;
+
+mixin menu(href, label, icon, iclass = 'fas')
+    li.nav-item
+        a.nav-link.p-3(href=href)&attributes(attributes)
+            +icon(icon, iclass)(class="mx-2 text-secondary")
+            span.text= label
+
+mixin icon(icon, iclass = 'fas', size = 'lg')
+    i(class=`${iclass} fa-${icon} fa-${size}`)&attributes(attributes)

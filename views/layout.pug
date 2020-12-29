@@ -43,36 +43,14 @@ html(lang="ko")
             .sideMenu.bg-mattBlackLight
                 .sidebar
                     ul.navbar-nav.pt-1
-                        li.nav-item
-                            a.nav-link.p-3(href="/search")
-                                i.fas.fa-search.fa-lg.mx-2.text-secondary
-                                span.text 단어검색
-                        li.nav-item
-                            a.nav-link.p-3(data-toggle="modal" data-target="#editor")
-                                i.fas.fa-edit.fa-lg.mx-2.text-secondary
-                                span.text 단어편집
-                        li.nav-item
-                            a.nav-link.p-3(href="/history")
-                                i.fas.fa-history.fa-lg.mx-2.text-secondary
-                                span.text 작업기록
-                        //-
-                            li.nav-item
-                                a.nav-link.p-3(href="/leaderboard")
-                                    i.fas.fa-trophy.fa-lg.mx-2.text-secondary
-                                    span.text 랭킹
-                        li.nav-item
-                            a.nav-link.p-3(href="https://github.com/xCrypt0r", target="_blank")
-                                i.fab.fa-github.fa-lg.mx-2.text-secondary
-                                span.text 개발자 깃허브
-                        li.nav-item
-                            if !isAuthenticated
-                                a.nav-link.p-3(href="/login")
-                                    i.fas.fa-sign-in-alt.fa-lg.mx-2.text-secondary
-                                    span.text 로그인
-                            else
-                                a.nav-link.p-3(href="/logout")
-                                    i.fas.fa-sign-out-alt.fa-lg.mx-2.text-secondary
-                                    span.text 로그아웃
+                        +menu('/search', '단어검색', 'search')
+                        +menu('#', '단어편집', 'edit')(data-toggle="modal", data-target="#editor")
+                        +menu('/history', '작업기록', 'history')
+                        +menu('https://github.com/xCrypt0r', '개발자 깃허브', 'github', 'fab')(target="_blank")
+                        if !isAuthenticated
+                            +menu('/login', '로그인', 'sign-in-alt')
+                        else
+                            +menu('/logout', '로그아웃', 'sign-out-alt')
             #loader.modal(tabindex="-1" role="dialog")
                 .modal-dialog.modal-dialog-centered.modal-sm(role="document")
                     .modal-content
@@ -85,7 +63,7 @@ html(lang="ko")
                     .modal-content
                         .modal-header
                             h5#editorTitle.modal-title
-                                i.fas.fa-edit.fa-lg.mx-1.text-dark
+                                +icon('edit')(class="mx-1 text-dark")
                                 span.text-dark 단어편집
                             button.close(type="button" data-dismiss="modal" aria-label="Close")
                                 span(aria-hidden="true") ×
@@ -93,10 +71,10 @@ html(lang="ko")
                             nav
                                 #nav-tab.nav.nav-tabs.mb-3(role="tablist")
                                     a#nav-add-tab.nav-tab.nav-item.nav-link.active(data-toggle="tab" href="#nav-add" role="tab" aria-controls="nav-add" aria-selected="true")
-                                        i.far.fa-plus-square.fa-lg.mx-1.text-success
+                                        +icon('plus-square', 'far')(class="mx-1 text-success")
                                         span.text-dark 추가
                                     a#nav-delete-tab.nav-tab.nav-item.nav-link(data-toggle="tab" href="#nav-delete" role="tab" aria-controls="nav-delete" aria-selected="false")
-                                        i.far.fa-minus-square.fa-lg.mx-1.text-danger
+                                        +icon('minus-square', 'far')(class="mx-1 text-danger")
                                         span.text-dark 삭제
                             #nav-tabContent.tab-content
                                 #nav-add.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="nav-home-tab")
@@ -108,7 +86,7 @@ html(lang="ko")
                                         input.form-control(type="text")
                                         .input-group-append
                                             button.btn.btn-danger.delete-field
-                                                i.fa.fa-trash
+                                                +icon('trash', 'fa', '1x')
                                     button.btn.btn-sm.btn-secondary.mb-2.float-right.add-field 생성
                                     br
                                     button#add.btn.btn-lg.btn-success(type="button") 추가

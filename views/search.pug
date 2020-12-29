@@ -9,7 +9,7 @@ block Content
                         input.form-control#keyword(type='text' placeholder='검색할 내용을 입력하세요!' autofocus)
                         .input-group-append
                             button.btn.btn-secondary#search(type='button')
-                                i.fa.fa-search
+                                +icon('search', 'fa', '1x')
                 .col-md-12(align="center")
                     .custom-control.custom-radio.custom-control-inline
                         input#optionWord3.custom-control-input(type="radio" name="wordLength" value="3" checked)
