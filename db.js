@@ -17,8 +17,9 @@ module.exports = () => {
 
         try {
             await mongoose.connect(url, {
+                keepAlive: true,
                 useNewUrlParser: true,
-                useFindAndModify: true,
+                useFindAndModify: false,
                 useUnifiedTopology: true,
                 useCreateIndex: true
             });

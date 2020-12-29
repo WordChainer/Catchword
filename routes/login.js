@@ -24,9 +24,7 @@ passport.deserializeUser(async (req, user, done) => {
     user.vendor = vendor;
     req.session.user = user;
 
-    if (await UserModel.addUser(user)) {
-        console.log(`새로운 사용자: ${user.nickname}`);
-    }
+    await UserModel.addUser(user);
 
     done(null, user);
 });

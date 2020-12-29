@@ -42,15 +42,7 @@ User.statics.findUser = async function(id) {
 User.statics.addUser = async function(user) {
     let { id, nickname, profile_image } = user;
 
-    if (!await this.findOne({ id: id })) {
-        await this.create(user, (err, doc) => {
-            return true;
-        });
-    } else {
-        await this.updateOne({ id: id }, { $set: { nickname, profile_image } });
-    }
-
-    return false;
+    await this.findOneAndUpdate({ id }, { nickname, profile_image }, { upsert: true, setDefaultsOnInsert: true });
 };
 
 module.exports = model('User', User, 'users');
