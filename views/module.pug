@@ -6,6 +6,10 @@
     var isAuthenticated = !!SESSION.passport;
     var user = SESSION.user;
 
+    Date.prototype.format = function(diff = 9, format = 'YYYY-MM-DD HH:mm:ss') {
+        return moment(this).add(diff, 'h').format(format);
+    }
+        
 mixin menu(href, label, icon, iclass = 'fas')
     li.nav-item
         a.nav-link.p-3(href=href)&attributes(attributes)

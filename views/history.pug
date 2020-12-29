@@ -1,20 +1,17 @@
 extends layout
 
 block Content
-    main
-        .container-fluid
-            .row
-                .col-md-12.my-3
-                    ul.list-group.list-group-flush
-                        each editLog in editLogs
-                            -
-                                var { date, user, values, action, words } = editLog;
-                            
-                                if (action === 'add') {
-                                    values = values.map((value, i) => words[i]?.isHidden && !isAdmin ? '[비공개]' : value);
-                                }
+    .container-fluid
+        .row: .col-md-12.my-3
+            ul.list-group.list-group-flush
+                each editLog in editLogs
+                    -
+                        var { date, user: { nickname }, values, action, words } = editLog;
+                    
+                        if (action === 'add') {
+                            values = values.map((value, i) => words[i]?.isHidden && !isAdmin ? '[비공개]' : value);
+                        }
 
-                            li.list-group-item.text-white= '[' + moment(date).add(9, 'h').format('YYYY-MM-DD HH:mm:ss') + '] ' + user.nickname + '님이 '
-                                span.badge.badge-dark.p-2.m-1(data-toggle="tooltip" data-html="true" title=`${values.join(', ')}`)= values.length + "개"
-                                span= '의 단어를 ' + (action === 'add' ? '추가' : '삭제') + '하였습니다.'
-
+                    li.list-group-item.text-white= '[' + date.format() + '] ' + nickname + '님이 '
+                        span.badge.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', '))= values.length + "개"
+                        span= '의 단어를 ' + (action === 'add' ? '추가' : '삭제') + '하였습니다.'
