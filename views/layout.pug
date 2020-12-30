@@ -46,6 +46,7 @@ html(lang="ko")
                         +menu('/search', '단어검색', 'search')
                         +menu('#', '단어편집', 'edit')(data-toggle="modal", data-target="#editor")
                         +menu('/history', '작업기록', 'history')
+                        +menu('/help', '사용방법', 'question-circle', 'far')
                         +menu('https://github.com/xCrypt0r', '개발자 깃허브', 'github', 'fab')(target="_blank")
                         if !isAuthenticated
                             +menu('/login', '로그인', 'sign-in-alt')

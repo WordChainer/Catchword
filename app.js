@@ -12,11 +12,12 @@ const bodyParser    = require('body-parser');
 const routers = {
     add:     require('./routes/add.js'),
     delete:  require('./routes/delete.js'),
+    help:    require('./routes/help.js'),
     history: require('./routes/history.js'),
+    index:   require('./routes/index.js'),
     login:   require('./routes/login.js'),
     logout:  require('./routes/logout.js'),
     search:  require('./routes/search.js'),
-    index:    require('./routes/index.js')
 };
 
 const UserModel = require('./models/User.js');
@@ -59,4 +60,5 @@ app
     .use('/add', routers.add)
     .use('/delete', routers.delete)
     .use('/history', routers.history)
+    .use('/help', routers.help)
     .listen(port, () => console.log(`Connected to ${host}${port == 80 ? '' : `:${port}`}`));
