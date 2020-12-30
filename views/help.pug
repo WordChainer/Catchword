@@ -40,5 +40,23 @@ block Content
                     li.list-group-item
                         .badge.bg-dark.p-2.m-1 ㅇㅇ이
                         | 첫글자와 중간글자 초성이 'ㅇ'이고 '이'로 끝나는 단어 검색 
+        .row.text-white
+            .col-md-12.my-3
+                h3.mb-3 사용된 기술
+                -
+                    var sources = {
+                        'nodejs': 'https://blog.kakaocdn.net/dn/cms72j/btqzok4RSIT/EN32GqecAy9lfPfQIkx5sk/img.png',
+                        'express': 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/express/express.png',
+                        'passport': 'https://miro.medium.com/max/200/1*YI1tt4kGzvea-v4dAhZ90w.png',
+                        'jquery': 'https://raw.githubusercontent.com/devicons/devicon/master/icons/jquery/jquery-original.svg',
+                        'pug': 'https://raw.githubusercontent.com/vscode-icons/vscode-icons/master/icons/file_type_pug.svg',
+                        'sass': 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/sass/sass.png',
+                        'bootstrap': 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bootstrap/bootstrap.png',
+                        'mongodb': 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg',
+                        'gulp': 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/gulp/gulp.png',
+                        'google-cloud-platform': 'https://cdn.iconscout.com/icon/free/png-256/google-cloud-platform-2-569356.png'
+                    };
 
-                
+                each src, name in sources
+                    .badge.bg-dark.p-2.m-2(data-toggle="tooltip" title=name)
+                        img(height="40" src=src alt=name)
