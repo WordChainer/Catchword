@@ -13,6 +13,10 @@ const User = Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     profile_image: {
         type: String,
         required: true
@@ -40,9 +44,9 @@ User.statics.findUser = async function(id) {
 };
 
 User.statics.addUser = async function(user) {
-    let { id, nickname, profile_image } = user;
+    let { id, nickname, email, profile_image } = user;
 
-    await this.findOneAndUpdate({ id }, { nickname, profile_image }, { upsert: true, setDefaultsOnInsert: true });
+    await this.findOneAndUpdate({ id }, { nickname, email, profile_image }, { upsert: true, setDefaultsOnInsert: true });
 };
 
 module.exports = model('User', User, 'users');
