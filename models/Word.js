@@ -66,12 +66,19 @@ Word.statics.search = async function({ keyword, length, user }) {
     let reverse = false;
 
     keyword = keyword.replace(/\s/g, '');
+    length = +length;
 
     if (keyword === '' || /^\.{1,3}$/.test(keyword)) {
         return [];
     }
 
     if (!/^-?[ㄱ-ㅎ가-힣.]+$/.test(keyword)) {
+        return [];
+    }
+
+    let rgxJaum = new RegExp(`^[ㄱ-ㅎ]{1,${length - 1}}$`);
+
+    if (rgxJaum.test(keyword)) {
         return [];
     }
 
