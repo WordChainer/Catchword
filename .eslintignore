@@ -1,4 +1,4 @@
-*.js
+./*.js
 !app.js
 !db.js
 
