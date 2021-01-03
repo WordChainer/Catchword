@@ -15,15 +15,20 @@ passport.use(new NaverStrategy({
     clientSecret,
     callbackURL
 }, (accessToken, refreshToken, profile, done) => {
+    let { nickname, profile_image } = profile._json;
+
+    if (!nickname || !profile_image) {
+        return done(null, false);
+    }
+
+    profile._json.vendor = vendor;
+
     process.nextTick(() => done(null, profile._json));
 }));
 
 passport.serializeUser((user, done) => done(null, user));
 
 passport.deserializeUser(async (req, user, done) => {
-    user.vendor = vendor;
-    req.session.user = user;
-
     await UserModel.addUser(user);
 
     done(null, user);
@@ -33,7 +38,7 @@ router
     .get('/', passport.authenticate(vendor, null))
     .get('/callback', passport.authenticate(vendor, {
         successRedirect: '/',
-        failureRedirect: '/'
+        failureRedirect: '/loginfail'
     }));
 
 module.exports = router;

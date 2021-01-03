@@ -4,11 +4,11 @@ const WordModel = require('../models/Word.js');
 const UserModel = require('../models/User.js');
 
 router.post('/', async (req, res) => {
-    if (!req.session.user) {
+    if (!req.user) {
         return res.status(400).send({ message: '로그인 후 이용가능합니다!' });
     }
 
-    let user = await UserModel.findUser(req.session.user.id);
+    let user = await UserModel.findUser(req.user.id);
     let words = JSON.parse(req.body['words[]'])
         .filter(word => /^[가-힣]{2,3}$/.test(word.value.trim()))
         .map(word => {

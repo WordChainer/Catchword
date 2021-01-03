@@ -4,7 +4,7 @@
     const SESSION = locals.session
 
     var isAuthenticated = !!SESSION.passport;
-    var user = SESSION.user;
+    var user = SESSION.passport?.user;
 
     Date.prototype.format = function(diff = 9, format = 'YYYY-MM-DD HH:mm:ss') {
         return moment(this).add(diff, 'h').format(format);

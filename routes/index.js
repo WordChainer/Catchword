@@ -8,9 +8,7 @@ router.get('/', (req, res) => {
         WordModel.countDocuments({ isHidden: true }),
         WordModel.countDocuments({ length: 3 }),
         WordModel.countDocuments({ length: 2 })
-    ]).then(counts => {
-        res.render('index', { counts })
-    });
+    ]).then(counts => res.render('index', { counts }));
 });
 
 module.exports = router;

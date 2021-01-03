@@ -10,14 +10,15 @@ const passport      = require('passport');
 const bodyParser    = require('body-parser');
 
 const routers = {
-    add:     require('./routes/add.js'),
-    delete:  require('./routes/delete.js'),
-    help:    require('./routes/help.js'),
-    history: require('./routes/history.js'),
-    index:   require('./routes/index.js'),
-    login:   require('./routes/login.js'),
-    logout:  require('./routes/logout.js'),
-    search:  require('./routes/search.js'),
+    add:        require('./routes/add.js'),
+    delete:     require('./routes/delete.js'),
+    help:       require('./routes/help.js'),
+    history:    require('./routes/history.js'),
+    index:      require('./routes/index.js'),
+    login:      require('./routes/login.js'),
+    loginfail:  require('./routes/loginfail.js'),
+    logout:     require('./routes/logout.js'),
+    search:     require('./routes/search.js')
 };
 
 const UserModel = require('./models/User.js');
@@ -46,7 +47,7 @@ app
         res.locals.session = req.session;
 
         if (req.session.passport) {
-            let user = await UserModel.findUser(req.session.user.id);
+            let user = await UserModel.findUser(req.user.id);
 
             res.locals.isAdmin = user.isAdmin;
         }
@@ -55,6 +56,7 @@ app
     })
     .use('/', routers.index)
     .use('/login', routers.login)
+    .use('/loginfail', routers.loginfail)
     .use('/logout', routers.logout)
     .use('/search', routers.search)
     .use('/add', routers.add)
