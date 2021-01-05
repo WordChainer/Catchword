@@ -48,6 +48,8 @@ html(lang="ko")
                         +menu('/history', '작업기록', 'history')
                         +menu('/help', '도움말', 'question-circle', 'far')
                         +menu('https://github.com/xCrypt0r', '개발자 깃허브', 'github', 'fab')(target="_blank")
+                        if isAdmin
+                            +menu('/download', '다운로드', 'download')(target="_blank")
                         if !isAuthenticated
                             +menu('/login', '로그인', 'sign-in-alt')
                         else
