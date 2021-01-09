@@ -1,7 +1,29 @@
 -
-    const TITLE = 'Catchword'
-    const AUTHOR = 'COKE (Legacy)'
-    const SESSION = locals.session
+    const TITLE = 'Catchword';
+    const AUTHOR = 'COKE (Legacy)';
+    const SESSION = locals.session;
+    const MENU = {
+        routes: {
+            search: '/search',
+            edit: '#',
+            history: '/history',
+            help: '/help',
+            github: 'https://github.com/xCrypt0r',
+            download: '/download',
+            login: '/login',
+            logout: '/logout'
+        },
+        labels: {
+            search: '단어검색',
+            edit: '단어편집',
+            history: '작업기록',
+            help: '도움말',
+            github: '개발자 깃허브',
+            download: 'DB 다운로드',
+            login: '로그인',
+            logout: '로그아웃'
+        }
+    };
 
     var isAuthenticated = !!SESSION.passport;
     var user = SESSION.passport?.user;

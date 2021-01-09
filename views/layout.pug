@@ -34,27 +34,23 @@ html(lang="ko")
                             a#navbarDropdown.nav-link.dropdown-toggle.p-0(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 img.rounded-circle.mr-2(src=user.profile_image width="40")
                                 span.text= user.nickname
-                            //-
-                                .dropdown-menu.dropdown-menu-right(aria-labelledby="navbarDropdown")
-                                    a.dropdown-item(href="#") Action
-                                    a.dropdown-item(href="#") Another action
-                                    .dropdown-divider
-                                    a.dropdown-item(href="#") Something else here
         .wrapper.d-flex
             .sideMenu.bg-mattBlackLight
                 .sidebar
                     ul.navbar-nav.pt-1
-                        +menu('/search', '단어검색', 'search')
-                        +menu('#', '단어편집', 'edit')(data-toggle="modal", data-target="#editor")
-                        +menu('/history', '작업기록', 'history')
-                        +menu('/help', '도움말', 'question-circle', 'far')
-                        +menu('https://github.com/xCrypt0r', '개발자 깃허브', 'github', 'fab')(target="_blank")
+                        - var { routes, labels } = MENU;
+
+                        +menu(routes.search, labels.search, 'search')
+                        +menu(routes.edit, labels.edit, 'edit')(data-toggle="modal", data-target="#editor")
+                        +menu(routes.history, labels.history, 'history')
+                        +menu(routes.help, labels.help, 'question-circle', 'far')
+                        +menu(routes.github, labels.github, 'github', 'fab')(target="_blank")
                         if isAdmin
-                            +menu('/download', '다운로드', 'download')(target="_blank")
+                            +menu(routes.download, labels.download, 'download')(target="_blank")
                         if !isAuthenticated
-                            +menu('/login', '로그인', 'sign-in-alt')
+                            +menu(routes.login, labels.login, 'sign-in-alt')
                         else
-                            +menu('/logout', '로그아웃', 'sign-out-alt')
+                            +menu(routes.logout, labels.logout, 'sign-out-alt')
             #loader.modal(tabindex="-1" role="dialog")
                 .modal-dialog.modal-dialog-centered.modal-sm(role="document")
                     .modal-content
