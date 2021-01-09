@@ -30,7 +30,7 @@ html(lang="ko")
             #navbarSupportedContent.collapse.navbar-collapse
                 ul.navbar-nav.ml-auto
                     if isAuthenticated
-                        li.nav-item.dropdown
+                        li#user.nav-item.dropdown
                             a#navbarDropdown.nav-link.dropdown-toggle.p-0(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                                 img.rounded-circle.mr-2(src=user.profile_image width="40")
                                 span.text= user.nickname
