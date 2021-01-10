@@ -7,16 +7,12 @@ block Content
                 .col-md-12
                     #slide.carousel.carousel-fade.slide(data-ride="carousel")
                         ul.carousel-indicators
-                            li.active(data-target="#slide" data-slide-to="0")
-                            li(data-target="#slide" data-slide-to="1")
-                            li(data-target="#slide" data-slide-to="2")
+                            - for (var i = 0, len = slides.length; i < len; i++)
+                                li(class=["active", ""][+!!i] data-target="#slide" data-slide-to=i)
                         .carousel-inner
-                            .carousel-item.active
-                                img(src="images/slide1.png" alt="1")
-                            .carousel-item
-                                img(src="images/slide2.png" alt="2")
-                            .carousel-item
-                                img(src="images/slide3.png" alt="3")
+                            each src, i in slides
+                                .carousel-item(class=["active", ""][+!!i])
+                                    img(src=src alt=src)
                         a.carousel-control-prev(href="#slide" data-slide="prev")
                             span.carousel-control-prev-icon
                         a.carousel-control-next(href="#slide" data-slide="next")

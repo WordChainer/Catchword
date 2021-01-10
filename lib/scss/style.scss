@@ -12,6 +12,10 @@ textarea {
 }
 
 .card {
+    &-text {
+        display: block;
+        text-align: left;
+    }
     &-img-top {
         width: 10vw;
         height: 10vw;

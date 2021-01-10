@@ -5,7 +5,7 @@ block Content
         .row.mt-2
             each user in users
                 -
-                    var { _id, nickname, profile_image: image, isAdmin = false, isBanned } = user;
+                    var { _id, nickname, profile_image: image, date, isAdmin = false, isBanned } = user;
                     var searchCount = searchCounts.find(x => x._id.toString() === _id.toString())?.count ?? 0;
 
                 .card-wrapper.col-lg-3.col-md-4.col-6.p-1
@@ -15,8 +15,9 @@ block Content
                         img.card-img-top.mx-auto.mt-3.rounded-circle.circle-image(src=image alt=nickname)
                         .card-body.text-center
                             h5.card-title= nickname
-                            p.card-text= '검색 횟수: ' + searchCount
+                            span.card-text= '검색 횟수: ' + searchCount
+                            span.card-text= '가입일: ' + date.format(9, 'YY.MM.DD')
                             if isBanned
                                 button.btn.btn-sm.btn-success 차단해제
                             else if !isAdmin
-                                button.btn.btn-sm.btn-danger 차단
+                                button.btn.btn-sm.btn-danger.mt-2 차단

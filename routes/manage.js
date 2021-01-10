@@ -5,6 +5,7 @@ const searchLogModel = require('../models/SearchLog.js');
 
 router.get('/', async (req, res) => {
     res.render('manage', {
+        moment: require('moment'),
         users: await UserModel
             .find()
             .sort({ date: 1 }),
