@@ -19,6 +19,7 @@ const routers = {
     login:      require('./routes/login.js'),
     loginfail:  require('./routes/loginfail.js'),
     logout:     require('./routes/logout.js'),
+    manage:     require('./routes/manage.js'),
     search:     require('./routes/search.js')
 };
 
@@ -63,6 +64,7 @@ app
     .use('/add', routers.add)
     .use('/delete', routers.delete)
     .use('/history', routers.history)
+    .use('/manage', routers.manage)
     .use('/download', routers.download)
     .use('/help', routers.help)
     .listen(port, () => console.log(`Connected to ${host}${port == 80 ? '' : `:${port}`}`));

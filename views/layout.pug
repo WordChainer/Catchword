@@ -12,9 +12,10 @@ html(lang="ko")
         meta(property="og:title" content="Catchword")
         title= TITLE
         link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous")
-        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
         link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Passion+One:wght@700&display=swap")
         link(rel="stylesheet" href="css/style.min.css")
+        script(defer='' src='https://use.fontawesome.com/releases/v5.15.1/js/fontawesome.js' integrity='sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c' crossorigin='anonymous')
         script.
             if (window.document.documentMode) {
                 document.execCommand('Stop');
@@ -43,10 +44,11 @@ html(lang="ko")
                         +menu(routes.search, labels.search, 'search')
                         +menu(routes.edit, labels.edit, 'edit')(data-toggle="modal", data-target="#editor")
                         +menu(routes.history, labels.history, 'history')
+                        if isAdmin
+                            +menu(routes.manage, labels.manage, 'wrench')
+                            +menu(routes.download, labels.download, 'download')(target="_blank")
                         +menu(routes.help, labels.help, 'question-circle', 'far')
                         +menu(routes.github, labels.github, 'github', 'fab')(target="_blank")
-                        if isAdmin
-                            +menu(routes.download, labels.download, 'download')(target="_blank")
                         if !isAuthenticated
                             +menu(routes.login, labels.login, 'sign-in-alt')
                         else
@@ -100,7 +102,6 @@ html(lang="ko")
             script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous")
             script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha256-OUFW7hFO0/r5aEGTQOz9F/aXQOt+TwqI1Z4fbVvww04=" crossorigin="anonymous")
             script(defer='' src='https://use.fontawesome.com/releases/v5.0.8/js/solid.js' integrity='sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l' crossorigin='anonymous')
-            script(defer='' src='https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js' integrity='sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c' crossorigin='anonymous')
             script(src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js" integrity="sha256-qE/6vdSYzQu9lgosKxhFplETvWvqAAlmAuR+yPh/0SI=" crossorigin="anonymous")
             script(src="../js/script.min.js")
             block JS

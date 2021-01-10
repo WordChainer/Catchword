@@ -8,8 +8,9 @@
             edit: '#',
             history: '/history',
             help: '/help',
-            github: 'https://github.com/xCrypt0r',
+            manage: '/manage',
             download: '/download',
+            github: 'https://github.com/xCrypt0r',
             login: '/login',
             logout: '/logout'
         },
@@ -18,8 +19,9 @@
             edit: '단어편집',
             history: '작업기록',
             help: '도움말',
-            github: '개발자 깃허브',
+            manage: '유저관리',
             download: 'DB 다운로드',
+            github: '개발자 깃허브',
             login: '로그인',
             logout: '로그아웃'
         }
@@ -35,7 +37,7 @@
 mixin menu(href, label, icon, iclass = 'fas')
     li.nav-item
         a.nav-link.p-3(href=href)&attributes(attributes)
-            +icon(icon, iclass)(class="mx-2 text-secondary")
+            +icon(icon, iclass)(class="fa-fw mx-2 text-secondary")
             span.text= label
 
 mixin icon(icon, iclass = 'fas', size = 'lg')
