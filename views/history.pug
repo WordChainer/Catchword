@@ -7,11 +7,14 @@ block Content
                 each editLog in editLogs
                     -
                         var { date, user: { nickname }, values, action, words } = editLog;
+                        var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초');
                     
                         if (action === 'add') {
                             values = values.map((value, i) => words[i]?.isHidden && !isAdmin ? '[비공개]' : value);
                         }
 
-                    li.list-group-item.text-white= '[' + date.format() + '] ' + nickname + '님이 '
-                        span.badge.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', '))= values.length + "개"
+                    li.list-group-item.text-white
+                        span.badge.badge-pill.badge-dark.p-2.mr-2.ml-n2(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
+                        span= nickname + '님이 '
+                        span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', '))= values.length + '개'
                         span= '의 단어를 ' + (action === 'add' ? '추가' : '삭제') + '하였습니다.'

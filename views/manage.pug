@@ -16,7 +16,7 @@ block Content
                         .card-body.text-center
                             h5.card-title= nickname
                             span.card-text= '검색 횟수: ' + searchCount
-                            span.card-text= '가입일: ' + date.format(9, 'YY.MM.DD')
+                            span.card-text= '가입일: ' + date.format('YY.MM.DD')
                             .mt-2
                                 a.btn.btn-sm.btn-success.mr-1(href=`/logs/${id}`) 로그
                                 if !isBanned && !isAdmin
