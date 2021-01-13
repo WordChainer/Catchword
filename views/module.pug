@@ -27,7 +27,7 @@
         }
     };
 
-    var isSubDir = path.split('/').length > 2;
+    var backPath = '../'.repeat(path.split('/').length - 2);
     var isAuthenticated = !!SESSION.passport;
     var user = SESSION.passport?.user;
 

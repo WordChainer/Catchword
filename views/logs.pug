@@ -5,7 +5,28 @@ block Content
         .row: .col-md-12.my-3
             ul.list-group.list-group-flush
                 each searchLog in searchLogs
-                    - var { keyword, date } = searchLog;
+                    -
+                        var { keyword, date } = searchLog;
+                        var timestamp = date.format('YY.MM.DD HH:mm:ss');
 
                     li.list-group-item.text-white
+                        span.badge.badge-pill.badge-dark.p-2.mr-3= timestamp
                         span= keyword
+
+        .row
+            .col-md-12
+                ul.pagination.justify-content-center
+                    - var end = ~~(total / perPage) + 1;
+
+                    li.page-item
+                        a.page-link(href="#" aria-label="Previous")
+                            span(aria-hidden="true") «
+                            span.sr-only Prev
+                    - for (var page = 1; page <= end; page++)
+                        li.page-item
+                            a.page-link(href=`/logs/${id}/${page}` class=(page === +current ? "page-active" : ""))= page
+                    li.page-item
+                        a.page-link(href="#" aria-label="Next")
+                            span(aria-hidden="true") »
+                            span.sr-only Next
+

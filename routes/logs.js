@@ -3,11 +3,32 @@ const router = express.Router();
 const UserModel = require('../models/User.js');
 const SearchLogModel = require('../models/SearchLog.js');
 
-router.get('/:id', async (req, res) => {
-    let user = await UserModel.findUser(req.params.id),
-        searchLogs = await SearchLogModel.find({ user: user._id  });
+router
+    .all('*', (req, res) => {
+        if (!res.locals.isAdmin) {
+            return res.send('접근 권한이 없습니다!');
+        }
 
-    res.render('logs', { searchLogs });
-});
+    })
+    .get('/:id/:page?', async (req, res) => {
+        let perPage = 100;
+        let page = req.params.page ?? 1,
+            user = await UserModel.findUser(req.params.id),
+            total = await SearchLogModel.countDocuments({ user: user._id }),
+            searchLogs = await SearchLogModel
+                .find({ user: user._id })
+                .sort({ date: -1 })
+                .skip(perPage * (page - 1))
+                .limit(perPage);
+
+        res.render('logs', {
+            moment: require('moment'),
+            id: req.params.id,
+            current: page,
+            total,
+            perPage,
+            searchLogs
+        });
+    });
 
 module.exports = router;
