@@ -15,6 +15,6 @@ block Content
 
                     li.list-group-item.text-white
                         span.badge.badge-pill.badge-dark.p-2.mr-2.ml-n2(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
-                        span= nickname + '님이 '
-                        span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', '))= values.length + '개'
-                        span= '의 단어를 ' + (action === 'add' ? '추가' : '삭제') + '하였습니다.'
+                        span #{nickname}님이 
+                        span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', ')) #{values.length}개
+                        span 의 단어를 #{action === 'add' ? '추가' : '삭제'}하였습니다.
