@@ -19,6 +19,7 @@ const routers = {
     login:      require('./routes/login.js'),
     loginfail:  require('./routes/loginfail.js'),
     logout:     require('./routes/logout.js'),
+    logs:       require('./routes/logs.js'),
     manage:     require('./routes/manage.js'),
     search:     require('./routes/search.js')
 };
@@ -47,6 +48,7 @@ app
     .use(passport.session())
     .use(async (req, res, next) => {
         res.locals.session = req.session;
+        res.locals.path = req.path;
 
         if (req.session.passport) {
             let user = await UserModel.findUser(req.user.id);
@@ -65,6 +67,7 @@ app
     .use('/delete', routers.delete)
     .use('/history', routers.history)
     .use('/manage', routers.manage)
+    .use('/logs', routers.logs)
     .use('/download', routers.download)
     .use('/help', routers.help)
     .listen(port, () => console.log(`Connected to ${host}${port == 80 ? '' : `:${port}`}`));
