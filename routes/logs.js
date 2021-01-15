@@ -4,15 +4,19 @@ const UserModel = require('../models/User.js');
 const SearchLogModel = require('../models/SearchLog.js');
 
 router
-    .all('*', (req, res) => {
+    .all('*', (req, res, next) => {
         if (!res.locals.isAdmin) {
             return res.send('접근 권한이 없습니다!');
         }
 
+        next();
+    })
+    .get('/', (req, res) => {
+        res.send('fuck');
     })
     .get('/:id/:page?', async (req, res) => {
         let perPage = 100;
-        let page = req.params.page ?? 1,
+        let page = req.params.page ?? 1;
             user = await UserModel.findUser(req.params.id),
             total = await SearchLogModel.countDocuments({ user: user._id }),
             searchLogs = await SearchLogModel
