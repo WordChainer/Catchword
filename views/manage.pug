@@ -5,7 +5,7 @@ block Content
         .row.mt-2
             each user in users
                 -
-                    var { _id, id, nickname, profile_image: image, date, isAdmin = false, isBanned } = user;
+                    var { _id, id, nickname, email, profile_image: image, date, isAdmin = false, isBanned } = user;
                     var searchCount = searchCounts.find(x => x._id.toString() === _id.toString())?.count ?? 0;
 
                 .card-wrapper.col-lg-3.col-md-4.col-6.p-1
@@ -15,6 +15,7 @@ block Content
                         img.card-img-top.mx-auto.mt-3.rounded-circle.circle-image(src=image alt=nickname)
                         .card-body.text-center
                             h5.card-title= nickname
+                            span.card-text 이메일: #{email || 'not provided'}
                             span.card-text 검색 횟수: #{searchCount}
                             span.card-text 가입일: #{date.format('YY.MM.DD')}
                             .mt-2
