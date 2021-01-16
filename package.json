@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "gulp && sudo node app.js",
+    "deploy": "NODE_ENV=production npm start",
     "gulp": "gulp default",
     "lint": "eslint ."
   },

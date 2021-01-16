@@ -2,7 +2,8 @@ module.exports = {
     apps : [
         {
             name: 'app',
-            script: 'app.js',
+            script: 'npm',
+            args: 'run deploy',
             watch: [
                 'lib',
                 'views',
