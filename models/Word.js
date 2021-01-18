@@ -113,7 +113,8 @@ Word.statics.search = async function({ keyword, length, user }) {
             _id: false,
             value: true,
             date: true,
-            user: true
+            user: true,
+            isHidden: true
         })
         .sort({ value: 1 });
 };
