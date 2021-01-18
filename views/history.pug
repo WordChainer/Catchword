@@ -13,8 +13,10 @@ block Content
                             values = values.map((value, i) => words[i]?.isHidden && !isAdmin ? '[비공개]' : value);
                         }
 
+                        action = ({ add: '추가', delete: '삭제', release: '공개' })[action];
+
                     li.list-group-item.text-white
                         span.badge.badge-pill.badge-dark.p-2.mr-2.ml-n2(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
                         span #{nickname}님이 
                         span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', ')) #{values.length}개
-                        span 의 단어를 #{action === 'add' ? '추가' : '삭제'}하였습니다.
+                        span 의 단어를 #{action}하였습니다.
