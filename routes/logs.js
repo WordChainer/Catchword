@@ -28,7 +28,7 @@ router
         res.render('logs', {
             moment: require('moment'),
             id: req.params.id,
-            current: page,
+            current: +page,
             total,
             perPage,
             searchLogs
