@@ -16,6 +16,9 @@ textarea {
         background-color: #343a40;
         color: #fff;
         border-width: 0;
+        &:focus {
+            box-shadow: none;
+        }
         &:hover:not(.disabled) {
             background-color: #f66436;
             box-shadow: 2px 5px 20px #111;
