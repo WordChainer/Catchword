@@ -1,8 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const passport = require('passport');
-const UserModel = require('../models/User.js');
-const NaverStrategy = require('passport-naver').Strategy;
+import { Router, Request, Response } from 'express';
+import passport from 'passport';
+import UserController from '../controllers/User.controller';
+import { Strategy as NaverStrategy } from 'passport-naver';
+
+const router = Router();
 const {
     NAVER_CLIENT_ID: clientID,
     NAVER_CLIENT_SECRET: clientSecret,
@@ -29,7 +30,7 @@ passport.use(new NaverStrategy({
 passport.serializeUser((user, done) => done(null, user));
 
 passport.deserializeUser(async (req, user, done) => {
-    await UserModel.addUser(user);
+    await UserController.CreateUser(user);
 
     done(null, user);
 });
@@ -41,4 +42,4 @@ router
         failureRedirect: '/loginfail'
     }));
 
-module.exports = router;
+export default router;

@@ -1,24 +1,26 @@
-const express = require('express');
-const router = express.Router();
-const WordModel = require('../models/Word.js');
-const UserModel = require('../models/User.js');
+import { Router, Request, Response } from 'express';
+import IWord from '../interfaces/IWord';
+import UserController from '../controllers/User.controller';
+import WordController from '../controllers/Word.controller';
 
-router.post('/', async (req, res) => {
+const router = Router();
+
+router.post('/', async (req: Request, res: Response) => {
     if (!req.user) {
         return res.status(400).send({ message: '로그인 후 이용가능합니다!' });
     }
 
-    let user = await UserModel.findUser(req.user.id);
+    let user = await UserController.FindUser(req.user.id);
     let words = JSON.parse(req.body['words[]'])
-        .filter(word => /^[가-힣]{2,3}$/.test(word.value.trim()))
-        .map(word => {
+        .filter((word: string): string => /^[가-힣]{2,3}$/.test(word.value.trim()))
+        .map((word: string): IWord => {
             let { value, isHidden } = word;
 
             value = value.trim();
 
             return { value, length: value.length, user: user._id, isHidden };
         });
-    let { result, values } = await WordModel.add(words);
+    let { result, values } = await WordController.CreateWord(words);
 
     if (result === 'success') {
         res.send(`${values.join('\n')}\n\n${values.length}개의 단어가 추가되었습니다.`);
@@ -27,4 +29,4 @@ router.post('/', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

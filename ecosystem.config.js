@@ -3,12 +3,11 @@ module.exports = {
         {
             name: 'app',
             script: 'npm',
-            args: 'run deploy',
+            args: 'start',
             watch: [
                 'lib',
                 'views',
-                'routes',
-                'app.js'
+                'src'
             ]
         },
         {

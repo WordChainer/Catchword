@@ -1,68 +1,52 @@
-const { Schema, model } = require('mongoose');
-const User = require('./User.js');
-const SearchLog = require('./SearchLog.js');
-const EditLog = require('./EditLog.js');
+import IUser from '../interfaces/IUser';
+import IWord from '../interfaces/IWord';
+import User from '../models/User.model';
+import Word from '../models/Word.model';
+import EditLogController from './EditLog.controller';
+import SearchLogController from './SearchLog.controller';
 
-const Word = new Schema({
-    value: {
-        type: String,
-        required: true,
-        unique: true,
-        match: /^[가-힣]{2,3}$/
-    },
-    length: {
-        type: Number,
-        required: true,
-        index: true,
-        min: 2,
-        max: 3
-    },
-    isHidden: {
-        type: Boolean,
-        default: false
-    },
-    date: {
-        type: Date,
-        default: Date.now
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    }
-});
+interface ICreateWordResult {
+    result: string;
+    values: IWord['value'][];
+}
 
-Word.statics.add = async function(words) {
+interface IDeleteWordResult extends ICreateWordResult {}
+
+interface IFindWordInput {
+    keyword: string;
+    length: number;
+    user: IUser;
+}
+
+async function CreateWord(words: IWord[]): ICreateWordResult {
     try {
-        let docs = await this.insertMany(words),
-            values = docs.map(doc => doc.value);
+        let docs = await Word.insertMany(words),
+            values = docs.map((doc: Iword): IWord['value'] => doc.value);
         let user = await User.findOne({ _id: words[0].user._id });
 
-        EditLog.addLog('add', values, user._id, docs.map(doc => doc._id));
+        EditLogController.CreateEditLog({ action: 'add', values, user: user._id, words });
 
         return ({ result: 'success', values });
-    } catch (err) {
+    } catch (err: Error) {
         return ({ result: 'fail', values: [] });
     }
-};
+}
 
-Word.statics.delete = async function(words) {
+async function DeleteWord(words: IWord[]): IDeleteWordResult {
     try {
-        let res = await this.deleteMany({ value: { $in: words.map(word => word.value) } }),
+        let res = await Word.deleteMany({ value: { $in: words.map(word => word.value) } }),
             values = words.map(word => word.value);
         let user = await User.findOne({ _id: words[0].user._id });
         
-        EditLog.addLog('delete', values, user._id);
+        EditLogController.CreateEditLog({ action: 'delete', values, user: user._id, words });
 
         return ({ result: 'success', values });
-    } catch (err) {
-        console.log(err);
-
+    } catch (err: Error) {
         return ({ result: 'fail', values: [] });
     }
-};
+}
 
-Word.statics.search = async function({ keyword, length, user }) {
+async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWord[]> {
     let reverse = false;
 
     keyword = keyword.replace(/\s/g, '');
@@ -82,7 +66,7 @@ Word.statics.search = async function({ keyword, length, user }) {
         return [];
     }
 
-    SearchLog.addLog(keyword, user);
+    SearchLogController.CreateSearchLog(keyword, user);
 
     if (/^-/.test(keyword)) {
         reverse = true;
@@ -101,10 +85,7 @@ Word.statics.search = async function({ keyword, length, user }) {
         conditions.push({ isHidden: false });
     }
 
-    return await this
-        .find({
-            $and: conditions
-        })
+    return await Word.find({ $and: conditions })
         .populate({
             path: 'user',
             select: 'nickname'
@@ -117,7 +98,7 @@ Word.statics.search = async function({ keyword, length, user }) {
             isHidden: true
         })
         .sort({ value: 1 });
-};
+}
 
 function hangulAssemble(ca, cb, cc) {
     return String.fromCharCode(ca * 588 + cb * 28 + cc + 44032);
@@ -129,4 +110,5 @@ function makeHangulRange(jaum) {
     return `[${hangulAssemble(code, 0, 0)}-${hangulAssemble(code, 20, 27)}]`;
 }
 
-module.exports = model('Word', Word, 'words');
+
+export default { CreateWord, DeleteWord, FindWord };

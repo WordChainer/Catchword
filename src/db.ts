@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const WordModel = require('./models/Word.js');
+import mongoose from 'mongoose';
 
-module.exports = () => {
+export default () => {
     let {
         MONGO_USER: user,
         MONGO_PASS: pass,
@@ -15,20 +14,18 @@ module.exports = () => {
     async function connect() {
         let url = `mongodb://${user}:${pass}@${host}:${port}/${dababase}`;
 
-        try {
-            await mongoose.connect(url, {
-                keepAlive: true,
-                useNewUrlParser: true,
-                useFindAndModify: false,
-                useUnifiedTopology: true,
-                useCreateIndex: true
-            });
-
+        await mongoose.connect(url, {
+            keepAlive: true,
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true,
+            useCreateIndex: true
+        }).then(() => {
             console.log('Connected to mongodb');
-        } catch (e) {
+        }).catch((err: Error) => {
             console.log('Failed to connect to mongodb: ');
-            console.log(e);
-        }
+            console.log(err);
+        });
     }
 
     connect();

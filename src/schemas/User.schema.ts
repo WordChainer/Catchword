@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+import { Schema } from 'mongoose';
 
-const User = Schema({
+const UserSchema = new Schema({
     id: {
         type: String,
         required: true
@@ -39,14 +39,4 @@ const User = Schema({
     }
 });
 
-User.statics.findUser = async function(id) {
-    return await this.findOne({ id });
-};
-
-User.statics.addUser = async function(user) {
-    let { id, nickname, email, profile_image } = user;
-
-    await this.findOneAndUpdate({ id }, { nickname, email, profile_image }, { upsert: true, setDefaultsOnInsert: true });
-};
-
-module.exports = model('User', User, 'users');
+export default UserSchema;
