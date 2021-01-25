@@ -33,7 +33,7 @@
     var user = SESSION.passport?.user;
 
     Date.prototype.format = function(format = 'YYYY-MM-DD HH:mm:ss', diff = 9) {
-        return moment(this).add(diff, 'h').format(format);
+        return dayjs(this).add(diff, 'h').format(format);
     }
         
 mixin menu(href, label, icon, iclass = 'fas')

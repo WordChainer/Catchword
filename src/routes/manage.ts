@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import checkAdmin from '../utils/checkAdmin';
 import User from '../models/User.model';
 import SearchLog from '../models/SearchLog.model';
@@ -14,7 +14,7 @@ router.get('/', async (req: Request, res: Response) => {
         ]);
 
     res.render('manage', {
-        moment,
+        dayjs,
         users,
         searchCounts
     });

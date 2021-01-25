@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import checkAdmin from '../utils/checkAdmin';
 import SearchLog from '../models/SearchLog.model';
 import UserController from '../controllers/User.controller';
@@ -29,7 +29,7 @@ router.get('/:id/:page?', async (req: Request, res: Response) => {
     }
 
     res.render('logs', {
-        moment,
+        dayjs,
         id: req.params.id,
         searchLogs,
         start,
