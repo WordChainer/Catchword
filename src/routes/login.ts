@@ -1,7 +1,7 @@
 import { Router, Request } from 'express';
 import passport from 'passport';
 import UserController from '../controllers/User.controller';
-import { Strategy as NaverStrategy } from 'passport-naver';
+import { Strategy as NaverStrategy, Profile } from 'passport-naver';
 
 const router = Router();
 const {
@@ -15,7 +15,7 @@ passport.use(new NaverStrategy({
     clientID,
     clientSecret,
     callbackURL
-}, (accessToken: string, refreshToken: string, profile: any, done: any) => {
+}, (accessToken: string, refreshToken: string, profile: Profile, done: any) => {
     let { nickname, profile_image } = profile._json;
 
     if (!nickname || !profile_image) {
