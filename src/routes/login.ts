@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router, Request } from 'express';
 import passport from 'passport';
 import UserController from '../controllers/User.controller';
 import { Strategy as NaverStrategy } from 'passport-naver';
@@ -15,7 +15,7 @@ passport.use(new NaverStrategy({
     clientID,
     clientSecret,
     callbackURL
-}, (accessToken, refreshToken, profile, done) => {
+}, (accessToken: string, refreshToken: string, profile: any, done: any) => {
     let { nickname, profile_image } = profile._json;
 
     if (!nickname || !profile_image) {
@@ -27,9 +27,9 @@ passport.use(new NaverStrategy({
     process.nextTick(() => done(null, profile._json));
 }));
 
-passport.serializeUser((user, done) => done(null, user));
+passport.serializeUser((user: any, done: any) => done(null, user));
 
-passport.deserializeUser(async (req, user, done) => {
+passport.deserializeUser(async (req: Request, user: any, done: any) => {
     await UserController.CreateUser(user);
 
     done(null, user);
