@@ -78,7 +78,7 @@ export default class App {
             .map((route: string): string => path.parse(route).name)
             .forEach(async (route: string) => {
                 let { default: router } = await import(`./routes/${route}`);
-            
+
                 this.app.use(route === 'index' ? '/' : `/${route}`, router);
             });
     }

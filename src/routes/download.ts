@@ -3,16 +3,14 @@ import { execSync as exec } from 'child_process';
 import AdmZip from 'adm-zip';
 import * as path from 'path';
 import * as fs from 'fs';
+import checkAdmin from '../utils/checkAdmin';
 
 const router = Router();
 const zip = new AdmZip();
 const cwd = process.cwd();
 
+router.all('*', checkAdmin);
 router.get('/', (req: Request, res: Response) => {
-    if (!res.locals.isAdmin) {
-        return res.send('접근 권한이 없습니다!');
-    }
-
     let id = Math.random().toString(36).substring(7),
         target = path.join(cwd, 'words_' + id + '.zip');
 
