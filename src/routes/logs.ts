@@ -8,23 +8,36 @@ const router = Router();
 
 router.all('*', checkAdmin);
 router.get('/:id/:page?', async (req: Request, res: Response) => {
-    let perPage = 100;
+    let perPage = 100,
+        max = 7;
     let page = req.params.page ?? 1,
         user = await UserController.FindUser(req.params.id),
         total = await SearchLog.countDocuments({ user: user._id }),
+        start = +page,
+        end = Math.ceil(total / perPage),
+        prev = start > 1 ? start - 1 : 1,
+        next = start + 1 < end ? start + 1 : end,
+        rest = Math.floor(max / 2),
         searchLogs = await SearchLog
             .find({ user: user._id })
             .sort({ date: -1 })
             .skip(perPage * (page - 1))
             .limit(perPage);
 
+    if (end < 1) {
+        end = 1;
+    }
+
     res.render('logs', {
         moment,
         id: req.params.id,
-        current: +page,
-        total,
-        perPage,
-        searchLogs
+        searchLogs,
+        start,
+        end,
+        prev,
+        next,
+        rest,
+        max
     });
 });
 

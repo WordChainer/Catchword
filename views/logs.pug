@@ -1,5 +1,15 @@
 extends layout
 
+mixin pagination(page, text)
+    li.page-item
+        unless text == undefined
+            if page > 0
+                a.page-link(href=`/logs/${id}/${page}`): span= text
+            else
+                a.page-link.disabled: span= text
+        else
+            a.page-link(href=`/logs/${id}/${page}` class=(page === start ? 'page-active' : ''))= page
+
 block Content
     .container-fluid
         .row: .col-md-12.my-3
@@ -16,50 +26,28 @@ block Content
         .row
             .col-md-12
                 ul.pagination.flex-wrap.justify-content-center
-                    -
-                        var start = current;
-                            end = Math.ceil(total / perPage),
-                            prev = start > 1 ? start - 1 : 1,
-                            next = start + 1 < end ? start + 1 : end,
-                            max = 7,
-                            rest = Math.floor(max / 2);
-
-                        if (end < 1) {
-                            end = 1;
-                        }
-
-                    li.page-item
-                        a.page-link(href=`/logs/${id}/1`): span «
-                    li.page-item
-                        a.page-link(href=`/logs/${id}/${prev}`): span ‹
+                    +pagination(1, '«')
+                    +pagination(prev, '‹')
 
                     if end > max
                         if start - rest > 1
-                            li.page-item
-                                a.page-link.disabled: span ...
+                            +pagination(0, '...')
 
                         if start <= rest
                             - for (var page = 1; page <= max; page++)
-                                li.page-item
-                                    a.page-link(href=`/logs/${id}/${page}` class=(page === start ? 'page-active' : ''))= page
+                                +pagination(page)
                         else if start + rest > end
                             - for (var page = end - max + 1; page <= end; page++)
-                                li.page-item
-                                    a.page-link(href=`/logs/${id}/${page}` class=(page === start ? 'page-active' : ''))= page
+                                +pagination(page)
                         else
                             - for (var page = start - rest; page <= start + rest; page++)
-                                li.page-item
-                                    a.page-link(href=`/logs/${id}/${page}` class=(page === start ? 'page-active' : ''))= page
+                                +pagination(page)
 
                         if start + rest < end
-                            li.page-item
-                                a.page-link.disabled: span ...
+                            +pagination(0, '...')
                     else
                         - for (var page = 1; page <= end; page++)
-                            li.page-item
-                                a.page-link(href=`/logs/${id}/${page}` class=(page === start ? 'page-active' : ''))= page
- 
-                    li.page-item
-                        a.page-link(href=`/logs/${id}/${next}`): span ›
-                    li.page-item
-                        a.page-link(href=`/logs/${id}/${end}`): span »
+                            +pagination(page)
+
+                    +pagination(next, '›')
+                    +pagination(end, '»')
