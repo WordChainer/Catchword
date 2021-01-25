@@ -6,7 +6,7 @@ import favicon from 'serve-favicon';
 import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
-import UserController from './controllers/User.controller';
+import setLocals from './middlewares/setLocals'
 
 const {
     CATCHWORD_HOST: host,
@@ -57,18 +57,7 @@ export default class App {
         }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
-        this.app.use(async (req: Request, res: Response, next: NextFunction) => {
-            res.locals.session = req.session;
-            res.locals.path = req.path;
-
-            if (req.session.passport) {
-                let user = await UserController.FindUser(req.user.id);
-
-                res.locals.isAdmin = user.isAdmin;
-            }
-
-            next();
-        });
+        this.app.use(setLocals);
     }
 
     private async initializeRouters() {
