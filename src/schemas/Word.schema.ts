@@ -18,6 +18,10 @@ const WordSchema = new Schema({
         type: Boolean,
         default: false
     },
+    isValidated: {
+        type: Boolean,
+        default: false
+    },
     date: {
         type: Date,
         default: Date.now
@@ -27,6 +31,8 @@ const WordSchema = new Schema({
         required: true,
         ref: 'User'
     }
+}, {
+    versionKey: false
 });
 
 export default WordSchema;

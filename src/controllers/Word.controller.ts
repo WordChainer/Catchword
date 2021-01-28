@@ -11,6 +11,7 @@ interface ICreateWordResult {
 }
 
 interface IDeleteWordResult extends ICreateWordResult {}
+interface IValidateWordResult extends ICreateWordResult {}
 
 interface IFindWordInput {
     keyword: string;
@@ -42,6 +43,18 @@ async function DeleteWord(words: IWord[]): IDeleteWordResult {
 
         return ({ result: 'success', values });
     } catch (err: Error) {
+        return ({ result: 'fail', values: [] });
+    }
+}
+
+async function ValidateWord(words: string[]): IValidateWordResult {
+    try {
+        await Word.updateMany({ value: { $in: words } }, { $set: { isValidated: true } });
+
+        return ({ result: 'success', values: words });
+    } catch (err: Error) {
+        console.log(err);
+
         return ({ result: 'fail', values: [] });
     }
 }
@@ -95,7 +108,8 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
             value: true,
             date: true,
             user: true,
-            isHidden: true
+            isHidden: true,
+            isValidated: true
         })
         .sort({ value: 1 });
 }
@@ -111,4 +125,4 @@ function makeHangulRange(jaum) {
 }
 
 
-export default { CreateWord, DeleteWord, FindWord };
+export default { CreateWord, DeleteWord, ValidateWord, FindWord };
