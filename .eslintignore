@@ -2,5 +2,6 @@
 !app.js
 !db.js
 
+dist
 public
 test
