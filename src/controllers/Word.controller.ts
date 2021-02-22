@@ -25,7 +25,7 @@ async function CreateWord(words: IWord[]): ICreateWordResult {
             values = docs.map((doc: Iword): IWord['value'] => doc.value);
         let user = await User.findOne({ _id: words[0].user._id });
 
-        EditLogController.CreateEditLog({ action: 'add', values, user: user._id, words });
+        EditLogController.CreateEditLog({ action: 'add', values, user: user._id, words: docs.map(doc => doc._id) });
 
         return ({ result: 'success', values });
     } catch (err: Error) {
