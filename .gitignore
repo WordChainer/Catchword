@@ -1,6 +1,7 @@
 node_modules
 dist
-public
+public/*
+!public/images
 test
 
 package-lock.json
