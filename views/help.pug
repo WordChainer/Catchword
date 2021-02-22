@@ -1,7 +1,10 @@
 extends layout
 
+mixin bullet(text)
+    p.my-2 &#9642; #{text}
+
 mixin paragraph(title)
-    p.my-2 &#9642; #{title}
+    +bullet(title)
     ul.list-group
         if block
             block
@@ -31,6 +34,18 @@ block Content
                     +manual('ㅇㅇ이', `첫글자와 중간글자 초성이 'ㅇ'이고 '이'로 끝나는 단어 검색`)
                 +paragraph('주의사항')
                     +manual('숨겨진 단어', '숨겨진 단어는 관리자로 등록된 유저에게만 표시됩니다.')
+        .row.text-white
+            .col-md-12.my-3
+                h3.mb-3 단어편집
+                +paragraph('추가')
+                    +manual('숨김', '단어를 비공개로 등록합니다.')
+                    +manual('여러개 추가', '생성 버튼을 누르면 단어를 입력할 수 있는 칸이 추가됩니다.')
+                +paragraph('삭제')
+                    +manual('여러개 삭제', '엔터(줄바꿈)으로 구분해서 여러 개의 단어를 입력할 수 있습니다.')
+                .container.float-left.mt-3.p-0
+                    img.img-fluid.rounded(src="images/help_add_word.png")
+                    +separator(3)
+                    img.img-fluid.rounded(src="images/help_delete_word.png")
         .row.text-white
             .col-md-12.my-3
                 h3.mb-3 사용된 기술
