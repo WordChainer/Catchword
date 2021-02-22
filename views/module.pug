@@ -44,3 +44,6 @@ mixin menu(href, label, icon, iclass = 'fas')
 
 mixin icon(icon, iclass = 'fas', size = 'lg')
     i(class=`${iclass} fa-${icon} fa-${size}`)&attributes(attributes)
+
+mixin separator(size)
+    div(class=`my-${size}`)
