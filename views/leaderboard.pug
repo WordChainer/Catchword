@@ -1,0 +1,18 @@
+extends layout
+
+block Content
+    .container-fluid
+        .row
+            p.m-3 &#9642; 단어 추가
+            .col-md-12
+                ul.list-group.list-group-flush
+                    each rank in ranks
+                        - var { count, user, profile } = rank;
+
+                        li.list-group-item.text-white
+                            .row
+                                .col-md-3.col-6
+                                    img.rounded-circle.mr-2(src=profile width="50" height="50")
+                                    | #{user}
+                                .col-md-9.col-6.text-center.my-auto
+                                    span.h4 #{count}개
