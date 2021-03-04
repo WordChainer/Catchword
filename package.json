@@ -1,7 +1,7 @@
 {
   "name": "Catchword",
   "version": "1.0.0",
-  "description": "",
+  "description": "Web implementation of dictionary for Netmarble GGT",
   "main": "src/index.ts",
   "scripts": {
     "start": "gulp && sudo ts-node --transpile-only src",
@@ -15,7 +15,7 @@
   "keywords": [
     "ggt"
   ],
-  "author": "",
+  "author": "xCrypt0r",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/xCrypt0r/Catchword/issues"
