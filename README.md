@@ -6,8 +6,8 @@
 📚 **Catchword** is web implementation of dictionary for [Netmarble GGT](http://game2.netmarble.net/kkoongda)
 
 ## Author
-Crucian © xCrypt0r  
-Authored and maintained by xCryptor  
+Catchword © xCrypt0r  
+Authored and maintained by xCrypt0r  
 
 > GitHub [**@xCrypt0r**][my github]  
 > Discord **xCrypt0r#9534**  
