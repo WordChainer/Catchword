@@ -4,7 +4,7 @@
   "description": "Web implementation of dictionary for Netmarble GGT",
   "main": "src/index.ts",
   "scripts": {
-    "start": "gulp && sudo ts-node --transpile-only src",
+    "start": "gulp && sudo ts-node src",
     "gulp": "gulp default",
     "lint": "eslint src"
   },
