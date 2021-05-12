@@ -8,7 +8,16 @@ router.get('/', async (req: Request, res: Response) => {
         {
             $group: {
                 _id: '$user',
-                count: { $sum: 1 }
+                count33: {
+                    $sum: {
+                        $cond: [{ '$eq': ['$length', 3] }, 1, 0]
+                    }
+                },
+                count32: {
+                    $sum: {
+                        $cond: [{ '$eq': ['$length', 2] }, 1, 0]
+                    }
+                }
             }
         },
         {
@@ -25,12 +34,15 @@ router.get('/', async (req: Request, res: Response) => {
                 user: '$user.nickname',
                 profile: '$user.profile_image',
                 _id: 0,
-                count: 1
+                count: { $add: ['$count33', '$count32'] },
+                count33: 1,
+                count32: 1
             }
         },
         {
             $sort: {
                 count: -1,
+                count33: -1,
                 user: 1
             }
         }

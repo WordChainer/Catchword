@@ -7,7 +7,7 @@ block Content
             .col-md-12
                 ul.list-group.list-group-flush
                     each rank in ranks
-                        - var { count, user, profile } = rank;
+                        - var { count33, count32, user, profile } = rank;
 
                         li.list-group-item.text-white
                             .row
@@ -15,4 +15,4 @@ block Content
                                     img.rounded-circle.mr-2(src=profile width="50" height="50")
                                     | #{user}
                                 .col-md-9.col-6.text-center.my-auto
-                                    span.h4 #{count}개
+                                    span.h5 #{count33}개 / #{count32}개
