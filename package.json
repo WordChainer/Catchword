@@ -4,7 +4,7 @@
   "description": "Web implementation of dictionary for Netmarble GGT",
   "main": "src/index.ts",
   "scripts": {
-    "start": "gulp && sudo ts-node src",
+    "start": "gulp && sudo ts-node src --transpileOnly",
     "gulp": "gulp default",
     "lint": "eslint src"
   },
@@ -24,7 +24,6 @@
   "dependencies": {
     "adm-zip": "^0.5.1",
     "dayjs": "^1.10.4",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fast-glob": "^3.2.5",

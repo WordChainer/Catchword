@@ -1,3 +1,4 @@
+import Const from '../const.json';
 import { Router, Request } from 'express';
 import passport from 'passport';
 import UserController from '../controllers/User.controller';
@@ -8,7 +9,7 @@ const {
     NAVER_CLIENT_ID: clientID,
     NAVER_CLIENT_SECRET: clientSecret,
     NAVER_CALLBACK_URL: callbackURL
-} = process.env;
+} = Const;
 const vendor = 'naver';
 
 passport.use(new NaverStrategy({

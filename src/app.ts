@@ -1,18 +1,16 @@
+import Const from './const.json';
 import connect from './db';
+import secure from './secure';
 import express, { Request, Response, NextFunction } from 'express';
+import * as https from 'https';
 import * as path from 'path';
 import glob from 'fast-glob';
 import favicon from 'serve-favicon';
 import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
+import redirectToHttps from './middlewares/redirectToHttps';
 import setLocals from './middlewares/setLocals'
-
-const {
-    CATCHWORD_HOST: host,
-    CATCHWORD_PORT: port = 80,
-    SESSION_SECRET: sessionSecret
-} = process.env;
 
 export default class App {
     public app: express.Application;
@@ -28,9 +26,17 @@ export default class App {
     }
 
     public listen() {
-        this.app.listen(port, () => {
-            console.log(`Connected to ${host}${port == 80 ? '' : `:${port}`}`)
+        this.app.listen(80, () => {
+            console.log('Connected to http');
         });
+
+        if (Const.IS_SECURED) {
+            let options = secure();
+
+            https.createServer(options, this.app).listen(443, () => {
+                console.log('Connected to https');
+            });
+        }
     }
 
     private connectToDatabase() {
@@ -47,11 +53,12 @@ export default class App {
     }
 
     private initializeMiddlewares() {
+        this.app.use(redirectToHttps);
         this.app.use(favicon(path.join(__dirname, '../public/images', 'favicon.ico')));
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(bodyParser.json());
         this.app.use(session({
-            secret: sessionSecret,
+            secret: Const.SESSION_SECRET,
             resave: false,
             saveUninitialized: true
         }));

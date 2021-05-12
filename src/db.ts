@@ -1,3 +1,4 @@
+import Const from './const.json';
 import mongoose from 'mongoose';
 
 export default () => {
@@ -7,7 +8,7 @@ export default () => {
         MONGO_HOST: host,
         MONGO_PORT: port,
         MONGO_DATABASE: dababase
-    } = process.env;
+    } = Const;
 
     pass = encodeURIComponent(pass);
 

@@ -1,11 +1,11 @@
 .vscode
 
 node_modules
+certs
 dist
 public/*
 !public/images
 test
 
+src/const.json
 package-lock.json
-
-.env
