@@ -5,8 +5,8 @@ $matt-red: #ff60a6;
 
 body {
     height: 1000px;
-    font-family: "Poor Story";
-    font-size: 1.2em;
+    font-family: "Rubik", "Poor Story";
+    font-size: 1.1em;
 }
 
 textarea {
@@ -149,16 +149,8 @@ body {
     align-items: center;
     display: block;
     white-space: nowrap;
-    .icon {
-        margin-right: 0.25rem;
-        font-size: 1.875rem;
+    .fa-lg {
         vertical-align: middle;
-        height: 2rem;
-        width: 2rem;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        color: $matt-gray;
     }
     .text {
         font-size: 0.875rem;
@@ -253,6 +245,11 @@ body {
     color: #ddd;
     border-color: #888;
     background-color: #888;
+}
+
+@font-face {
+    font-family: "Rubik";
+    unicode-range: U+0041-005A, U+0061-007A, U+0030-0039;
 }
 
 @keyframes spin {
