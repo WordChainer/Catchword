@@ -19,20 +19,18 @@ block Content
                         }
 
                     each rank in ranks
-                        - var { ranking, count, count33, count32, user, profile } = rank;
+                        -
+                            var { ranking, count, count33, count32, user, profile } = rank;
+                            var percentage = count / max * 100;
 
                         li.list-group-item.text-white
                             .row
                                 .col-md-1.col-3
-                                    div
-                                        img.rounded-circle.mr-3(src=profile width="50" height="50")
-
+                                    img.rounded-circle(src=profile width="50" height="50")
                                 .col-md-11.col-9.my-auto
                                     div.mb-2
-                                        span.h5.mr-2.text-danger #{ranking}.
-                                        span.h5 #{user}
-                                        span.h5.float-right #{count} 개
+                                        span.h5.mr-2.text-danger= ranking
+                                        span.h5= user
+                                        span.badge.badge-pill.badge-dark.p-2.float-right(data-toggle="tooltip" data-html="true" title=`3글자: ${count33}개<br>2글자: ${count32}개`) #{count} 개
                                     div.progress
-                                        - var percent = count / max * 100;
-
-                                        .progress-bar.progress-bar-custom(style=`width: ${percent}%`)
+                                        .progress-bar.progress-bar-custom(style=`width: ${percentage}%`)
