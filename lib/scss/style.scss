@@ -240,6 +240,13 @@ body {
     }
 }
 
+.progress {
+    background: transparent;
+    &-bar-custom {
+        background: linear-gradient(to right, #5cb85c, #43e97b);
+    }
+}
+
 .custom-control-input:checked ~ .custom-control-label::before {
     color: #ddd;
     border-color: #888;
