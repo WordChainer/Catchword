@@ -37,6 +37,8 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    versionKey: false
 });
 
 export default UserSchema;
