@@ -1,0 +1,46 @@
+@media (min-width: 768px) {
+    .carousel .carousel-item img {
+        height: 77vh;
+    }
+}
+
+@media (max-width: 992px) {
+    #count,
+    .table {
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .wrapper {
+        .sideMenu {
+            transform: translateX(0);
+        }
+
+        .content {
+            margin-left: 12.5rem;
+        }
+
+        &.active {
+            .sideMenu {
+                width: 5rem;
+
+                .nav-link {
+                    text-align: center;
+
+                    .icon {
+                        margin-right: 0;
+                    }
+
+                    .text {
+                        display: none;
+                    }
+                }
+            }
+
+            .content {
+                margin-left: 5rem;
+            }
+        }
+    }
+}

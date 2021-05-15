@@ -1,0 +1,9 @@
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: none !important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #ddd;
+    border-color: #888;
+    background-color: #888;
+}

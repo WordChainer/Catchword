@@ -1,0 +1,52 @@
+.navbar-brand {
+    font-family: "Passion One";
+    font-size: 23px;
+}
+
+.navbar-toggler {
+    &:focus,
+    &:active {
+        outline: none;
+        box-shadow: none;
+    }
+
+    &-icon:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.nav-link {
+    align-items: center;
+    display: block;
+    white-space: nowrap;
+
+    .fa-lg {
+        vertical-align: middle;
+    }
+
+    .text {
+        font-size: 0.875rem;
+        color: $matt-gray;
+    }
+
+    &:hover {
+        .icon,
+        .text {
+            color: $matt-red;
+        }
+    }
+
+    &.active {
+        background-color: $matt-blackdark;
+
+        .icon,
+        .text {
+            color: $matt-red;
+        }
+    }
+
+    &:not(.nav-tab):hover {
+        background-color: $matt-blackdark;
+    }
+}

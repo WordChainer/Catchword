@@ -1,0 +1,16 @@
+body {
+    height: 1000px;
+    background-color: $matt-blackdark;
+    font-family: "Rubik", "Poor Story";
+    font-size: 1.1em;
+    color: $matt-gray;
+}
+
+textarea {
+    resize: none;
+}
+
+.form-control:focus,
+.btn:focus {
+    box-shadow: none;
+}

@@ -1,0 +1,7 @@
+.progress {
+    background: transparent;
+
+    &-bar-custom {
+        background: linear-gradient(to right, #5cb85c, #43e97b);
+    }
+}

@@ -1,0 +1,27 @@
+.page {
+    &-link {
+        background-color: #343a40;
+        color: #fff;
+        border-width: 0;
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        &:hover:not(.disabled) {
+            background-color: #f66436;
+            box-shadow: 2px 5px 20px #111;
+            transform: translateY(-1px);
+        }
+
+        &.disabled:hover {
+            background-color: #343a40 !important;
+        }
+    }
+
+    &-active {
+        background-color: #f44336;
+        box-shadow: 2px 5px 10px #111;
+        transition: all .3s;
+    }
+}

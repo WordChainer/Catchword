@@ -1,0 +1,15 @@
+.modal {
+    &.show {
+        z-index: 9999;
+    }
+
+    &-content {
+        background-color: #fff;
+        border-radius: 0px;
+        box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    &-backdrop.show {
+        opacity: 0.35;
+    }
+}

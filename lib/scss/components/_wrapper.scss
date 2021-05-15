@@ -1,0 +1,25 @@
+.wrapper {
+    margin-top: 3.5rem;
+
+    .sideMenu {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 12.5rem;
+        margin: 3.5rem auto auto;
+        transition: all ease 0.25s;
+        transform: translateX(-100%);
+        z-index: 2000;
+    }
+
+    .content {
+        width: 100%;
+        margin-left: 0rem;
+        transition: all ease 0.25s;
+    }
+
+    &.active .sideMenu {
+        transform: translateX(0);
+    }
+}
