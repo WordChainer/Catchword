@@ -14,6 +14,10 @@ const WordSchema = new Schema({
         min: 2,
         max: 3
     },
+    needFilter: {
+        type: Boolean,
+        deafault: false
+    },
     isHidden: {
         type: Boolean,
         default: false
