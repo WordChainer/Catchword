@@ -23,10 +23,16 @@ block Content
                         | 개의 단어가 검색되었습니다!
                 .col-md-12.my-3
                     div
-                        p
+                        p.mb-0
                             i.fas.fa-ban.fa-fw.align-middle.mr-1.text-danger
                             span 필터 필요
-                    button#validate.btn.btn-sm.btn-dark.mb-2(type="button") 검수
+                        p.mb-0
+                            i.fas.fa-skull.fa-fw.align-middle.mr-1.text-success
+                            span 3-3 한방
+                        p.mb-0
+                            i.fas.fa-skull.fa-fw.align-middle.mr-1.text-primary
+                            span 3-2 한방
+                    button#validate.btn.btn-sm.btn-dark.my-2(type="button") 검수
                     table.table.table-dark#result
                         thead
                             tr
