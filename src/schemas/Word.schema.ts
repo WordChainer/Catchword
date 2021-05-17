@@ -16,7 +16,15 @@ const WordSchema = new Schema({
     },
     needFilter: {
         type: Boolean,
-        deafault: false
+        default: false
+    },
+    isHanbang33: {
+        type: Boolean,
+        default: false
+    },
+    isHanbang32: {
+        type: Boolean,
+        default: false
     },
     isHidden: {
         type: Boolean,
