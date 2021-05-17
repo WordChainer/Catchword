@@ -104,12 +104,7 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
             select: 'nickname'
         })
         .select({
-            _id: false,
-            value: true,
-            date: true,
-            user: true,
-            isHidden: true,
-            isValidated: true
+            _id: false
         })
         .sort({ value: 1 });
 }
