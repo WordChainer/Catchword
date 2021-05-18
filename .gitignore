@@ -1,5 +1,6 @@
 .vscode
 
+backup/*
 node_modules
 certs
 dist
