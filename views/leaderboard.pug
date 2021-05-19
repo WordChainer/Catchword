@@ -12,7 +12,7 @@ block Content
 
                         for (var i = 0, len = ranks.length; i < len; i++) {
                             if (i > 0 && ranks[i].count < ranks[i - 1].count) {
-                                ranking++;
+                                ranking = i + 1;
                             }
 
                             ranks[i].ranking = ranking;
