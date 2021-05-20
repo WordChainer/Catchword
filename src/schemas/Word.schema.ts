@@ -26,6 +26,14 @@ const WordSchema = new Schema({
         type: Boolean,
         default: false
     },
+    isMiddle33: {
+        type: Boolean,
+        default: false
+    },
+    isMiddle32: {
+        type: Boolean,
+        default: false
+    },
     isHidden: {
         type: Boolean,
         default: false
