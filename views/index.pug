@@ -18,10 +18,19 @@ block Content
                         a.carousel-control-next(href="#slide" data-slide="next")
                             span.carousel-control-next-icon
             .row.no-gutters.mt-2
-                each text, i in ['전체 단어', '숨겨진 단어', '3-3 단어', '3-2 단어']
+                -
+                    var icons = [
+                        'fas fa-book',
+                        'fas fa-users',
+                        'fas fa-search',
+                        'fas fa-thumbs-up'
+                    ];
+
+                each text, i in ['전체 단어', '유저', '검색 횟수', '추천 단어']
                     .col-sm-3.col-6
                         .counter-box
-                            span.counter= counts[i]
+                            i(class=`${icons[i]}`)
+                            span.counter= contents[i]
                             p= text
 
 block JS

@@ -7,13 +7,18 @@
 
     &-box {
         margin: 5px 5px;
-        padding: 35px 10px 20px;
+        padding: 15px 10px 0;
         border: 1px solid $matt-gray;
-        background-color: transparent;
+        background-color: inherit;
         text-align: center;
 
+        i {
+            margin: 0 0 15px;
+            font-size: 40px;
+        }
+
         p {
-            margin-top: 15px;
+            margin-top: 5px;
             padding: 0;
             color: #fff;
             font-size: 18px;
