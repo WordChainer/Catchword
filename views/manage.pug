@@ -18,7 +18,7 @@ block Content
                             span.card-text 이메일: #{email || 'not provided'}
                             span.card-text 검색 횟수: #{searchCount}
                             span.card-text 가입일: #{date.format('YY.MM.DD')}
-                            .mt-2
-                                a.btn.btn-sm.btn-success.mr-1(href=`/logs/${id}`) 로그
-                                if !isBanned && !isAdmin
-                                    button.btn.btn-sm.btn-danger 차단
+                        .card-footer.d-flex.justify-content-center
+                            a.btn.btn-sm.btn-success.mr-1(href=`/logs/${id}`) 로그
+                            if !isBanned && !isAdmin
+                                button.btn.btn-sm.btn-danger 차단
