@@ -30,7 +30,7 @@ gulp.task('minify-image', () => {
 
 gulp.task('watch', () => {
     gulp.watch('lib/js/*.js', gulp.series('minify-js'));
-    gulp.watch('lib/scss/*.scss', gulp.series('minify-css'));
+    gulp.watch('lib/scss/**/*.scss', gulp.series('minify-css'));
 });
 
 gulp.task('default', gulp.series('minify-js', 'minify-css'));
