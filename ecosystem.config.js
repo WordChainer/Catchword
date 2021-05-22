@@ -5,8 +5,6 @@ module.exports = {
             script: 'npm',
             args: 'start',
             watch: [
-                'lib',
-                'views',
                 'src'
             ]
         },
