@@ -25,6 +25,7 @@ passport.use(new NaverStrategy({
 
     profile._json.vendor = vendor;
 
+    console.log(`[Login] ${profile._json.nickname}`);
     process.nextTick(() => done(null, profile._json));
 }));
 
