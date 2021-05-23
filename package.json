@@ -23,6 +23,7 @@
   "homepage": "https://github.com/xCrypt0r/Catchword#readme",
   "dependencies": {
     "adm-zip": "^0.5.1",
+    "connect-mongo": "^4.4.1",
     "dayjs": "^1.10.4",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

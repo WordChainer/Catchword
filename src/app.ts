@@ -6,6 +6,8 @@ import * as https from 'https';
 import * as path from 'path';
 import glob from 'fast-glob';
 import favicon from 'serve-favicon';
+import mongoose from 'mongoose';
+import MongoStore from 'connect-mongo';
 import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
@@ -60,7 +62,14 @@ export default class App {
         this.app.use(session({
             secret: Const.SESSION_SECRET,
             resave: false,
-            saveUninitialized: true
+            saveUninitialized: true,
+            cookie: {
+                secure: true,
+                maxAge: 7 * 24 * 60 * 60 * 1000
+            },
+            store: MongoStore.create({
+                client: mongoose.connection.getClient()
+            })
         }));
         this.app.use(passport.initialize());
         this.app.use(passport.session());
