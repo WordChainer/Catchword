@@ -64,7 +64,7 @@ export default class App {
             resave: false,
             saveUninitialized: true,
             cookie: {
-                secure: true,
+                secure: Const.IS_SECURED ? true : false,
                 maxAge: 7 * 24 * 60 * 60 * 1000
             },
             store: MongoStore.create({
