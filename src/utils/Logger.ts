@@ -26,7 +26,7 @@ export default class Logger extends Console {
         super(process.stdout, process.stderr);
     }
 
-    private writeLog(data: any, type: string = 'log') {
+    private writeLog(data: any, type: string) {
         data = Logger.parse(data);
 
         super[type](Logger.PAINTS[type], `[${this.timestamp}] ${data}`);
