@@ -1,13 +1,12 @@
 import { Router, Request, Response } from 'express';
-import formatDate from '../utils/formatDate';
+import Logger from '../utils/Logger';
 
 const router = Router();
+const logger = new Logger();
 
 router.get('/', (req: Request, res: Response) => {
     req.session.destroy(() => {
-        let date = formatDate('HH:mm:ss');
-
-        console.log('\x1b[41m', `[${date}] Logout: ${req.user.nickname}`, '\x1b[0m');
+        logger.error(`Logout: ${req.user.nickname}`);
         req.logout();
         res.redirect('/');
     });

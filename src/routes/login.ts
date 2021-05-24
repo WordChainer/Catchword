@@ -3,9 +3,10 @@ import { Router, Request } from 'express';
 import passport from 'passport';
 import UserController from '../controllers/User.controller';
 import { Strategy as NaverStrategy, Profile } from 'passport-naver';
-import formatDate from '../utils/formatDate';
+import Logger from '../utils/Logger';
 
 const router = Router();
+const logger = new Logger();
 const {
     NAVER_CLIENT_ID: clientID,
     NAVER_CLIENT_SECRET: clientSecret,
@@ -18,8 +19,7 @@ passport.use(new NaverStrategy({
     clientSecret,
     callbackURL
 }, (accessToken: string, refreshToken: string, profile: Profile, done: any) => {
-    let { nickname, profile_image } = profile._json,
-        date = formatDate('HH:mm:ss');
+    let { nickname, profile_image } = profile._json;
 
     if (!nickname || !profile_image) {
         return done(null, false);
@@ -27,7 +27,7 @@ passport.use(new NaverStrategy({
 
     profile._json.vendor = vendor;
 
-    console.log('\x1b[42m', `[${date}] Login: ${profile._json.nickname}`, '\x1b[0m');
+    logger.log(`Login: ${profile._json.nickname}`);
     process.nextTick(() => done(null, profile._json));
 }));
 
