@@ -29,7 +29,7 @@ block Content
                 each text, i in ['전체 단어', '유저', '검색 횟수', '추천 단어']
                     .col-sm-3.col-6
                         .counter-box
-                            i(class=`${icons[i]}`)
+                            i(class=icons[i])
                             span.counter= contents[i]
                             p= text
 
