@@ -15,12 +15,12 @@ router.get('/', async (req: Request, res: Response) => {
                 _id: '$user',
                 count33: {
                     $sum: {
-                        $cond: [{ '$eq': ['$length', 3] }, 1, 0]
+                        $cond: [{ $eq: ['$length', 3] }, 1, 0]
                     }
                 },
                 count32: {
                     $sum: {
-                        $cond: [{ '$eq': ['$length', 2] }, 1, 0]
+                        $cond: [{ $eq: ['$length', 2] }, 1, 0]
                     }
                 }
             }
@@ -34,14 +34,12 @@ router.get('/', async (req: Request, res: Response) => {
             }
         },
         { $unwind: '$user' },
+        { $unset: ['_id'] },
         {
-            $project: {
+            $addFields: {
                 user: '$user.nickname',
                 profile: '$user.profile_image',
-                _id: 0,
-                count: { $add: ['$count33', '$count32'] },
-                count33: 1,
-                count32: 1
+                count: { $add: ['$count33', '$count32'] }
             }
         },
         {
