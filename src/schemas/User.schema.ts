@@ -3,7 +3,8 @@ import { Schema } from 'mongoose';
 const UserSchema = new Schema({
     id: {
         type: String,
-        required: true
+        required: true,
+        index: true
     },
     vendor: {
         type: String,
