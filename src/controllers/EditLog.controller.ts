@@ -1,6 +1,5 @@
 import IWord from '../interfaces/IWord';
 import IEditLog from '../interfaces/IEditLog';
-import User from '../models/User.model';
 import EditLog from '../models/EditLog.model';
 
 interface ICreateEditLogInput {
@@ -23,7 +22,6 @@ async function GetAllEditLogs(): Promise<IEditLog[]> {
             select: 'isHidden'
         }, {
             path: 'user',
-            model: User,
             select: 'nickname'
         }])
         .sort({ date: -1 });
