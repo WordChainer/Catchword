@@ -88,6 +88,9 @@ html(lang="ko")
                                     a#nav-validate-tab.nav-tab.nav-item.nav-link(data-toggle="tab" href="#nav-validate" role="tab" aria-controls="nav-validate" aria-selected="false")
                                         +icon('check-square', 'far')(class="mx-1 text-primary")
                                         span.text-dark 검수
+                                    a#nav-release-tab.nav-tab.nav-item.nav-link(data-toggle="tab" href="#nav-release" role="tab" aria-controls="nav-release" aria-selected="false")
+                                        +icon('share-square', 'far')(class="mx-1 text-secondary")
+                                        span.text-dark 공개
                             #nav-tabContent.tab-content
                                 #nav-add.tab-pane.fade.show.active(role="tabpanel" aria-labelledby="nav-home-tab")
                                     .input-group.mb-2
@@ -108,6 +111,9 @@ html(lang="ko")
                                 #nav-validate.tab-pane.fade(role="tabpanel" aria-labelledby="nav-profile-tab")
                                     textarea.form-control.mb-2(rows="10" spellcheck="false" style="min-width: 100%")
                                     button#validate2.btn.btn-lg.btn-primary(type="button") 검수
+                                #nav-release.tab-pane.fade(role="tabpanel" aria-labelledby="nav-profile-tab")
+                                    textarea.form-control.mb-2(rows="10" spellcheck="false" style="min-width: 100%")
+                                    button#release.btn.btn-lg.btn-secondary(type="button") 공개
 
             .content.vh-100
                 block Content

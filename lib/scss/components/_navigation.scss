@@ -1,3 +1,22 @@
+.nav {
+    $p: &;
+
+    &-tabs {
+        overflow-x: auto;
+        overflow-y:hidden;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        #{$p}-link {
+            white-space: nowrap;
+        }
+    }
+}
+
 .navbar-brand {
     font-family: "Passion One";
     font-size: 23px;

@@ -12,10 +12,16 @@ interface ICreateWordResult {
 
 interface IDeleteWordResult extends ICreateWordResult {}
 interface IValidateWordResult extends ICreateWordResult {}
+interface IReleaseWordResult extends ICreateWordResult {}
 
 interface IFindWordInput {
     keyword: string;
     length: number;
+    user: IUser;
+}
+
+interface IReleaseWordInput {
+    words: string[];
     user: IUser;
 }
 
@@ -50,6 +56,20 @@ async function DeleteWord(words: IWord[]): IDeleteWordResult {
 async function ValidateWord(words: string[]): IValidateWordResult {
     try {
         await Word.updateMany({ value: { $in: words } }, { $set: { isValidated: true } });
+
+        return ({ result: 'success', values: words });
+    } catch (err: Error) {
+        console.log(err);
+
+        return ({ result: 'fail', values: [] });
+    }
+}
+
+async function ReleaseWord({ words, user }: IReleaseWordInput): IReleaseWordResult {
+    try {
+        await Word.updateMany({ value: { $in: words } }, { $set: { isHidden: false } });
+
+        EditLogController.CreateEditLog({ action: 'release', values: words, user: user._id });
 
         return ({ result: 'success', values: words });
     } catch (err: Error) {
@@ -120,4 +140,4 @@ function makeHangulRange(jaum) {
 }
 
 
-export default { CreateWord, DeleteWord, ValidateWord, FindWord };
+export default { CreateWord, DeleteWord, ValidateWord, ReleaseWord, FindWord };
