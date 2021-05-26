@@ -1,7 +1,7 @@
 import Const from './const.json';
 import connect from './db';
 import secure from './secure';
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 import * as https from 'https';
 import * as path from 'path';
 import glob from 'fast-glob';
