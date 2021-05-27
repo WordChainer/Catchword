@@ -1,0 +1,42 @@
+.profile-nav {
+    margin-top: 30px;
+
+    ul {
+		margin-top: 1px;
+
+		li {
+			border-bottom: 1px solid #6f6f6f;
+			line-height: 30px;
+        }
+    }
+
+	.user-heading {
+		padding: 30px;
+		border-radius: 4px 4px 0 0;
+		background: #25b163;
+		text-align: center;
+		color: #fff;
+
+		a {
+			img {
+				width: 112px;
+				height: 112px;
+				border-radius: 50%;
+			}
+		}
+
+		h1 {
+			font-size: 22px;
+			font-weight: 300;
+			margin-bottom: 5px;
+		}
+
+        &.round {
+            a {
+                border-radius: 50%;
+                border: 10px solid rgba(255, 255, 255, 0.3);
+                display: inline-block;
+            }
+        }
+	}
+}

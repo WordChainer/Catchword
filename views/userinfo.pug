@@ -1,0 +1,41 @@
+extends layout
+
+block Content
+    .container-fluid
+        .row.mt-2
+            -
+                var {
+                    nickname,
+                    profile_image,
+                    email,
+                    date
+                } = target;
+
+                var words32 = words.find(x => x._id === 2)?.list.sort() ?? [],
+                    words33 = words.find(x => x._id === 3)?.list.sort() ?? [];
+
+            .profile-nav.col-md-12
+                .panel
+                    .user-heading.round
+                        a(href="#")
+                            img(src=profile_image alt=nickname)
+                        h1.mt-2= nickname
+
+                    ul.list-group
+                        li.list-group-item
+                            i.far.fa-calendar-alt
+                            span.ml-2 #{date.format('YYYY년 MM월 DD일')} 가입
+                        li.list-group-item
+                            i.far.fa-envelope
+                            span.ml-2 #{email || '이메일 정보 제공에 동의하지 않음'}
+                        li.list-group-item
+                            i.fas.fa-search
+                            span.ml-2 #{searchCount}회 검색
+        if words33.length > 0 || words32.length > 0
+            .row.mt-2
+                if words33.length > 0
+                    p.m-3.bg-success.text-dark [3글자]
+                    .col-md-12(style="word-break: keep-all;")= words33.join(' ')
+                if words32.length > 0
+                    p.m-3.bg-danger.text-dark [2글자]
+                    .col-md-12(style="word-break: keep-all;")= words32.join(' ')

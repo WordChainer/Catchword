@@ -8,15 +8,11 @@ const router = Router();
 
 router.all('*', checkAdmin);
 router.get('/', async (req: Request, res: Response) => {
-    let users = await User.find().sort({ isAdmin: -1, date: 1 }),
-        searchCounts = await SearchLog.aggregate([
-            { $group: { _id: '$user',  count: { $sum: 1 } } }
-        ]);
+    let users = await User.find().sort({ isAdmin: -1, date: 1 });
 
     res.render('manage', {
         dayjs,
-        users,
-        searchCounts
+        users
     });
 });
 
