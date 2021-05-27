@@ -3,10 +3,7 @@ module.exports = {
         {
             name: 'app',
             script: 'npm',
-            args: 'start',
-            watch: [
-                'src'
-            ]
+            args: 'start'
         },
         {
             name: 'gulp',
