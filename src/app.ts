@@ -5,6 +5,7 @@ import express from 'express';
 import * as https from 'https';
 import * as path from 'path';
 import glob from 'fast-glob';
+import compression from 'compression';
 import favicon from 'serve-favicon';
 import passport from 'passport';
 import bodyParser from 'body-parser';
@@ -54,6 +55,7 @@ export default class App {
 
     private initializeMiddlewares() {
         this.app.use(redirectToHttps);
+        this.app.use(compression());
         this.app.use(favicon(path.join(__dirname, '../public/images', 'favicon.ico')));
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(bodyParser.json());
