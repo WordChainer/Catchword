@@ -6,12 +6,10 @@ import * as https from 'https';
 import * as path from 'path';
 import glob from 'fast-glob';
 import favicon from 'serve-favicon';
-import mongoose from 'mongoose';
-import MongoStore from 'connect-mongo';
-import session from 'express-session';
 import passport from 'passport';
 import bodyParser from 'body-parser';
 import redirectToHttps from './middlewares/redirectToHttps';
+import setSession from './middlewares/setSession';
 import setLocals from './middlewares/setLocals'
 
 export default class App {
@@ -59,18 +57,7 @@ export default class App {
         this.app.use(favicon(path.join(__dirname, '../public/images', 'favicon.ico')));
         this.app.use(bodyParser.urlencoded({ extended: false }));
         this.app.use(bodyParser.json());
-        this.app.use(session({
-            secret: Const.SESSION_SECRET,
-            resave: false,
-            saveUninitialized: true,
-            cookie: {
-                secure: Const.IS_SECURED ? true : false,
-                maxAge: 7 * 24 * 60 * 60 * 1000
-            },
-            store: MongoStore.create({
-                client: mongoose.connection.getClient()
-            })
-        }));
+        this.app.use(setSession());
         this.app.use(passport.initialize());
         this.app.use(passport.session());
         this.app.use(setLocals);
