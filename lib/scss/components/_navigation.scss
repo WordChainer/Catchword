@@ -65,7 +65,7 @@
         }
     }
 
-    &:not(.nav-tab):hover {
+    &:not(.nav-tab):not(#navbarDropdown):hover {
         background-color: $matt-blackdark;
     }
 }

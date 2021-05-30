@@ -20,8 +20,7 @@ html(lang="ko")
         link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik&display=swap")
         link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poor+Story&display=swap&subset=korean")
         link(rel="stylesheet" href=`${backPath}css/main.min.css`)
-        script(defer="" src="https://pro.fontawesome.com/releases/v5.15.1/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous")
-        script(data-ad-client="ca-pub-4034755133252366" async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")
+        script(defer="" src="https://pro.fontawesome.com/releases/v5.15.1/js/fontawesome.js")
         script.
             if (window.document.documentMode) {
                 document.execCommand('Stop');
@@ -38,8 +37,8 @@ html(lang="ko")
                 ul.navbar-nav.ml-auto
                     if isAuthenticated
                         li#user.nav-item.dropdown
-                            a#navbarDropdown.nav-link.dropdown-toggle.p-0(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                                img.rounded-circle.mr-2(src=user.profile_image width="40")
+                            a#navbarDropdown.nav-link.p-0(href=`/userinfo/${user.id}` role="button" aria-haspopup="true" aria-expanded="false")
+                                img.rounded-circle.mt-1.mr-2(src=user.profile_image width="40")
                                 span.text= user.nickname
         .wrapper.d-flex
             .sideMenu.bg-mattBlackLight
@@ -120,6 +119,6 @@ html(lang="ko")
             script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous")
             script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous")
             script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous")
-            script(src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js" integrity="sha256-qE/6vdSYzQu9lgosKxhFplETvWvqAAlmAuR+yPh/0SI=" crossorigin="anonymous")
-            script(src=`${backPath}js/script.min.js`)
+            script(src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.8/jquery.slimscroll.min.js" integrity="sha256-qE/6vdSYzQu9lgosKxhFplETvWvqAAlmAuR+yPh/0SI=" crossorigin="anonymous" async)
+            script(src=`${backPath}js/script.min.js` async)
             block JS
