@@ -6,6 +6,7 @@ certs
 dist
 public/*
 !public/images
+!public/manifest.json
 test
 
 src/const.json
