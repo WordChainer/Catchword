@@ -1,6 +1,7 @@
-./*.js
-
 node_modules
 dist
 public
 test
+
+gulpfile.js
+ecosystem.config.js

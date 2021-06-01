@@ -41,10 +41,11 @@ async function CreateWord(words: IWord[]): ICreateWordResult {
 
 async function DeleteWord(words: IWord[]): IDeleteWordResult {
     try {
-        let res = await Word.deleteMany({ value: { $in: words.map(word => word.value) } }),
-            values = words.map(word => word.value);
-        let user = await User.findOne({ _id: words[0].user._id });
+        let values = words.map(word => word.value),
+            user = await User.findOne({ _id: words[0].user._id });
         
+        await Word.deleteMany({ value: { $in: words.map(word => word.value) } });
+
         EditLogController.CreateEditLog({ action: 'delete', values, user: user._id, words });
 
         return ({ result: 'success', values });

@@ -2,7 +2,6 @@ import { Router, Request, Response } from 'express';
 import dayjs from 'dayjs';
 import checkAdmin from '../utils/checkAdmin';
 import User from '../models/User.model';
-import SearchLog from '../models/SearchLog.model';
 
 const router = Router();
 
