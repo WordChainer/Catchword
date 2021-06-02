@@ -10,7 +10,17 @@ block Content
                         var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초');
                     
                         if (action === 'add') {
-                            values = values.map((value, i) => words[i]?.isHidden && !isAdmin ? '[비공개]' : value);
+                            values = values.map((value, i) => {
+                                if (words[i]?.isHidden) {
+                                    if (isAdmin) {
+                                        return `<span class="font-weight-bold text-danger">${value}</span>`;
+                                    }
+
+                                    return '[비공개]';
+                                }
+
+                                return value;
+                            });
                         }
 
                         action = ({ add: '추가', delete: '삭제', release: '공개' })[action];
@@ -18,5 +28,5 @@ block Content
                     li.list-group-item.text-white
                         span.badge.badge-pill.badge-dark.p-2.mr-2.ml-n2(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
                         span #{nickname}님이 
-                        span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" title=values.join(', ')) #{values.length}개
+                        span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" data-html="true" title=values.join(', ')) #{values.length}개
                         span 의 단어를 #{action}하였습니다.
