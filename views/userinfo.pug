@@ -2,7 +2,7 @@ extends layout
 
 block Content
     .container-fluid
-        .row.mt-2
+        .row.mt-4
             -
                 var {
                     nickname,
@@ -14,7 +14,7 @@ block Content
                 var words32 = words.find(x => x._id === 2)?.list.sort() ?? [],
                     words33 = words.find(x => x._id === 3)?.list.sort() ?? [];
 
-            .profile-nav.col-md-12
+            .profile-nav.col-12.m-0
                 .panel
                     .user-heading.round
                         a(href="#")
@@ -31,11 +31,32 @@ block Content
                         li.list-group-item
                             i.fas.fa-search
                             span.ml-2 #{searchCount}회 검색
+                        li.list-group-item
+                            i.fas.fa-trophy
+                            span.ml-2 단어 #{words32.length + words33.length}개 등록
         if words33.length > 0 || words32.length > 0
-            .row.mt-2
+            .row.mt-4
                 if words33.length > 0
-                    p.m-3.bg-success.text-dark [3글자]
-                    .col-md-12(style="word-break: keep-all;")= words33.join(' ')
+                    .col-sm-6.col-12.pr-2
+                        table.table.table-rounded.table-dark.text-center
+                            thead
+                                tr
+                                    th 단어(3-3)
+                                    th 날짜
+                            tbody
+                                each word in words33
+                                    tr
+                                        td(class=word.isHidden ? "text-danger" : "")= word.value
+                                        td= word.date.format('YY.MM.DD')
                 if words32.length > 0
-                    p.m-3.bg-danger.text-dark [2글자]
-                    .col-md-12(style="word-break: keep-all;")= words32.join(' ')
+                    .col-sm-6.col-12.pl-3
+                        table.table.table-rounded.table-dark.text-center
+                            thead
+                                tr
+                                    th 단어(3-2)
+                                    th 날짜
+                            tbody
+                                each word in words32
+                                    tr
+                                        td(class=word.isHidden ? "text-danger" : "")= word.value
+                                        td= word.date.format('YY.MM.DD')

@@ -27,7 +27,13 @@ router.get('/:id', async (req: Request, res: Response) => {
             {
                 $group: {
                     _id: '$length',
-                    list: { $push: '$value' }
+                    list: {
+                        $push: {
+                            value: '$value',
+                            isHidden: '$isHidden',
+                            date: '$date'
+                        }
+                    }
                 }
             }
         ]);
