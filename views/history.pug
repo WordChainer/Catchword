@@ -4,23 +4,15 @@ block Content
     .container-fluid
         .row: .col-md-12.my-3
             ul.list-group.list-group-flush
+                - var wrap = value => `<span class="font-weight-bold text-danger">${value}</span>`;
+
                 each editLog in editLogs
                     -
                         var { date, user: { nickname }, values, action, words } = editLog;
                         var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초');
                     
                         if (action === 'add') {
-                            values = values.map((value, i) => {
-                                if (words[i]?.isHidden) {
-                                    if (isAdmin) {
-                                        return `<span class="font-weight-bold text-danger">${value}</span>`;
-                                    }
-
-                                    return '[비공개]';
-                                }
-
-                                return value;
-                            });
+                            values = values.map((value, i) => words[i]?.isHidden ? isAdmin ? wrap(value) : '[비공개]' : value);
                         }
 
                         action = ({ add: '추가', delete: '삭제', release: '공개' })[action];
