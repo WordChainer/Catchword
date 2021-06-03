@@ -4,9 +4,9 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 576px) {
     .carousel .carousel-item img {
-        height: 77vh;
+        height: 200px;
     }
 }
 
