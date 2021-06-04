@@ -2,14 +2,24 @@ extends layout
 
 block Content
     .container-fluid
-        .row: .col-md-12.my-3
+        .row.mx-n1: .col-md-12.mt-3.p-0
             ul.list-group.list-group-flush
                 - var wrap = value => `<span class="font-weight-bold text-danger">${value}</span>`;
 
                 each editLog in editLogs
                     -
-                        var { date, user: { nickname }, values, action, words } = editLog;
-                        var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초');
+                        var {
+                            date,
+                            user: {
+                                nickname,
+                                profile_image
+                            },
+                            values,
+                            action,
+                            words
+                        } = editLog;
+                        var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초'),
+                            profile = `<img src=${profile_image} width="50" height="50">`;
                     
                         if (action === 'add') {
                             values = values.map((value, i) => words[i]?.isHidden ? isAdmin ? wrap(value) : '[비공개]' : value);
@@ -19,6 +29,6 @@ block Content
 
                     li.list-group-item.text-white
                         span.badge.badge-pill.badge-dark.p-2.mr-2.ml-n2(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
-                        span #{nickname}님이 
+                        span(data-toggle="tooltip" data-placement="left" data-html="true" title=profile) #{nickname}님이
                         span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" data-html="true" title=values.join(', ')) #{values.length}개
                         span 의 단어를 #{action}하였습니다.

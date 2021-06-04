@@ -22,7 +22,7 @@ async function GetAllEditLogs(): Promise<IEditLog[]> {
             select: 'isHidden'
         }, {
             path: 'user',
-            select: 'nickname'
+            select: ['nickname', 'profile_image']
         }])
         .sort({ date: -1 });
 }
