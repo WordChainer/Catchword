@@ -4,7 +4,7 @@ block Content
     main
         .container-fluid
             .row.mt-2
-                .col-md-12
+                .col-md-12.pt-1.px-2
                     #slide.carousel.carousel-fade.slide(data-ride="carousel")
                         ul.carousel-indicators
                             - for (var i = 0, len = slides.length; i < len; i++)
@@ -17,7 +17,7 @@ block Content
                             span.carousel-control-prev-icon
                         a.carousel-control-next(href="#slide" data-slide="next")
                             span.carousel-control-next-icon
-            .row.no-gutters.mt-2
+            .row.no-gutters.mt-2.mx-n2
                 -
                     var icons = [
                         'fas fa-book',
