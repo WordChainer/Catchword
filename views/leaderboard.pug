@@ -2,10 +2,9 @@ extends layout
 
 block Content
     .container-fluid
-        .row
-            p.m-3 &#9642; 단어 추가
-            .col-md-12
-                ul.list-group.list-group-flush
+        .row.mt-3
+            .col-md-12.mt-1
+                ul.list-group
                     -
                         var max = ranks[0].count;
                         var ranking = 1;
