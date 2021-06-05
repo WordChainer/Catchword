@@ -2,7 +2,7 @@ extends layout
 
 block Content
     .container-fluid
-        .row.mx-n1: .col-md-12.mt-3.p-0
+        .row.mt-1: .col-md-12.my-3
             ul.list-group.list-group-flush
                 - var wrap = value => `<span class="font-weight-bold text-danger">${value}</span>`;
 
@@ -18,8 +18,7 @@ block Content
                             action,
                             words
                         } = editLog;
-                        var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초'),
-                            profile = `<img src=${profile_image} width="50" height="50">`;
+                        var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초');
                     
                         if (action === 'add') {
                             values = values.map((value, i) => words[i]?.isHidden ? isAdmin ? wrap(value) : '[비공개]' : value);
@@ -27,8 +26,9 @@ block Content
 
                         action = ({ add: '추가', delete: '삭제', release: '공개' })[action];
 
-                    li.list-group-item.text-white
-                        span.badge.badge-pill.badge-dark.p-2.mr-2.ml-n2(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
-                        span(data-toggle="tooltip" data-placement="left" data-html="true" title=profile) #{nickname}님이
-                        span.badge.badge-pill.badge-dark.p-2.m-1(data-toggle="tooltip" data-html="true" title=values.join(', ')) #{values.length}개
+                    li.list-group-item.mb-3.rounded-left.rounded-right.text-white
+                        img.ml-n1.mr-3.rounded(src=profile_image width="40" height="40")
+                        span #{nickname}님이
+                        span.mx-1.p-2.badge.badge-pill.badge-dark(data-toggle="tooltip" data-html="true" title=values.join(', ')) #{values.length}개
                         span 의 단어를 #{action}하였습니다.
+                        span.float-right.mr-n1.p-2.badge.badge-pill.badge-dark(data-toggle="tooltip" data-html="true" title=timestamp)= date.format('YY.MM.DD')
