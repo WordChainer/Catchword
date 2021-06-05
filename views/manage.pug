@@ -1,8 +1,8 @@
 extends layout
 
 block Content
-    .container-fluid
-        .row.mt-2.px-1
+    .container-fluid.mt-2
+        .row.pt-1.px-2
             each user in users
                 -
                     var {
@@ -16,7 +16,7 @@ block Content
                         isBanned
                     } = user;
 
-                .card-wrapper.col-lg-3.col-md-4.col-6.p-1
+                .card-wrapper.col-lg-3.col-md-4.col-6.p-2
                     .card.bg-dark.text-white.h-100
                         if isAdmin
                             +icon('crown')(class="text-warning mt-2 ml-1 position-absolute")
