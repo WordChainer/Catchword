@@ -27,7 +27,7 @@ block Content
                         action = ({ add: '추가', delete: '삭제', release: '공개' })[action];
 
                     li.list-group-item.mb-3.rounded-left.rounded-right.text-white
-                        img.ml-n1.mr-3.rounded(src=profile_image width="40" height="40")
+                        img.ml-n1.mr-3.rounded(src=profile_image width="40" height="40" alt=nickname)
                         span #{nickname}님이
                         span.mx-1.p-2.badge.badge-pill.badge-dark(data-toggle="tooltip" data-html="true" title=values.join(', ')) #{values.length}개
                         span 의 단어를 #{action}하였습니다.
