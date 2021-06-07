@@ -1,4 +1,8 @@
 .modal {
+    .close:focus {
+        outline: none;
+    }
+
     &.show {
         z-index: 9999;
     }
