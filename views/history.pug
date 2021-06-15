@@ -21,10 +21,26 @@ block Content
                         var timestamp = date.format('YYYY년 MM월 DD일<br>HH시 mm분 ss초');
                     
                         if (action === 'add') {
+                            if (!isAdmin) {
+                                words = words.reduce((res, word, i) => {
+                                    if (word.isHidden) {
+                                        delete values[i];
+                                    } else {
+                                        res.push(word);
+                                    }
+
+                                    return res;
+                                }, []);
+                                values = values.filter(Boolean);
+                            }
+
                             values = values.map((value, i) => words[i]?.isHidden ? isAdmin ? wrap(value) : '[비공개]' : value);
                         }
 
                         action = ({ add: '추가', delete: '삭제', release: '공개' })[action];
+
+                    if values.length < 1
+                        - continue
 
                     li.list-group-item.mb-3.rounded-left.rounded-right.text-white
                         img.ml-n1.mr-3.rounded(src=profile_image width="40" height="40" alt=nickname)
