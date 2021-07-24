@@ -6,7 +6,7 @@ block Content
             .row
                 .col-md-12.my-3
                     .input-group.mt-3
-                        input.form-control#keyword(type='text' placeholder='검색할 내용을 입력하세요!' autofocus)
+                        input.form-control#keyword(type='text' placeholder='검색할 내용을 입력하세요!' autocomplete="off" autofocus)
                         .input-group-append
                             button.btn.btn-secondary#search(type='button')
                                 +icon('search', 'fa', '1x')
