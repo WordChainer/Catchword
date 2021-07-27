@@ -1,0 +1,11 @@
+.popover {
+    background-color: $matt-blackdark;
+
+    .arrow:after {
+        border-bottom-color: $matt-blackdark;
+    }
+
+    &-body {
+        color: $matt-gray;
+    }
+}

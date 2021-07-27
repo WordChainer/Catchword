@@ -21,24 +21,9 @@ block Content
                     #count
                         b 0
                         | 개의 단어가 검색되었습니다!
-                .col-md-12.my-3
-                    div
-                        p.mb-0
-                            i.fas.fa-ban.fa-fw.align-middle.mr-1.text-danger
-                            span 필터 필요
-                        p.d-inline.mr-2.mb-0
-                            i.fas.fa-skull.fa-fw.align-middle.mr-1.text-success
-                            span 3-3 한방
-                        p.d-inline.mb-0
-                            i.fas.fa-crosshairs.fa-fw.align-middle.mr-1.text-success
-                            span 3-3 미들
-                        br
-                        p.d-inline.mr-2.mb-0
-                            i.fas.fa-skull.fa-fw.align-middle.mr-1.text-primary
-                            span 3-2 한방
-                        p.d-inline.mb-0
-                            i.fas.fa-crosshairs.fa-fw.align-middle.mr-1.text-primary
-                            span 3-2 미들
+                        a#helper.ml-2(href="#" data-toggle="popover")
+                            +icon('question-circle', 'far', '1x')(class="align-middle text-danger")
+                .col-md-12
                     button#validate.btn.btn-sm.btn-dark.my-2(type="button") 검수
                     table.table.table-dark.text-center#result
                         thead
