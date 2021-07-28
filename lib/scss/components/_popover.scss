@@ -1,11 +1,22 @@
 .popover {
     background-color: $matt-blackdark;
 
+    hr {
+        height: 1px;
+        background-color: $matt-gray;
+    }
+
     .arrow:after {
         border-bottom-color: $matt-blackdark;
     }
 
     &-body {
+        font-family: 'Poor Story';
+        font-size: 1rem;
         color: $matt-gray;
+
+        .badge {
+            font-size: 1.1rem;
+        }
     }
 }
