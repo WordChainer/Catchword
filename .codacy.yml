@@ -1,3 +1,9 @@
+engines:
+  duplication:
+    exclude_paths:
+      - 'lib/js/**.js'
+      - 'src/**/*.ts'
+
 exclude_paths:
   - '**.md'
   - '**.json'
