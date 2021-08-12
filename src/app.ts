@@ -11,7 +11,8 @@ import passport from 'passport';
 import bodyParser from 'body-parser';
 import redirectToHttps from './middlewares/redirectToHttps';
 import setSession from './middlewares/setSession';
-import setLocals from './middlewares/setLocals'
+import setLocals from './middlewares/setLocals';
+import logRequests from './middlewares/logRequests';
 
 export default class App {
     public app: express.Application;
@@ -63,6 +64,7 @@ export default class App {
         this.app.use(passport.initialize());
         this.app.use(passport.session());
         this.app.use(setLocals);
+        this.app.use(logRequests);
     }
 
     private async initializeRouters() {
