@@ -7,7 +7,7 @@ export default async function logRequests(req: Request, res: Response, next: Nex
     let method = req.method,
         url = req.url,
         status = res.statusCode,
-        user = req.user.nickname,
+        user = req.user?.nickname ?? 'guest',
         ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
     logger.log(`${method}: ${user}(${ip}) ${url} ${status}`);
