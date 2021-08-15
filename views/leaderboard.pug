@@ -6,11 +6,11 @@ block Content
             .col-md-12.mt-1
                 ul.list-group
                     -
-                        var max = ranks[0].count;
+                        var max = ranks[0].score;
                         var ranking = 1;
 
                         for (var i = 0, len = ranks.length; i < len; i++) {
-                            if (i > 0 && ranks[i].count < ranks[i - 1].count) {
+                            if (i > 0 && ranks[i].score < ranks[i - 1].score) {
                                 ranking = i + 1;
                             }
 
@@ -19,8 +19,8 @@ block Content
 
                     each rank in ranks
                         -
-                            var { ranking, count, count33, count32, user, profile } = rank;
-                            var percentage = count / max * 100;
+                            var { ranking, score, count, count33, count32, user, profile } = rank;
+                            var percentage = score / max * 100;
 
                         li.list-group-item.text-white
                             .row
@@ -30,6 +30,6 @@ block Content
                                     div.mb-2
                                         span.h5.mr-2.text-danger= ranking
                                         span.h5= user
-                                        span.badge.badge-pill.badge-dark.p-2.float-right(data-toggle="tooltip" data-html="true" title=`3글자: ${count33}개<br>2글자: ${count32}개`) #{count} 개
+                                        span.badge.badge-pill.badge-dark.p-2.float-right(data-toggle="tooltip" data-html="true" title=`합계: ${count}개<br>3글자: ${count33}개<br>2글자: ${count32}개`) #{score} 점
                                     div.progress
                                         .progress-bar.progress-bar-custom(style=`width: ${percentage}%`)

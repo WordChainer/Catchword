@@ -39,12 +39,13 @@ router.get('/', async (req: Request, res: Response) => {
             $addFields: {
                 user: '$user.nickname',
                 profile: '$user.profile_image',
-                count: { $add: ['$count33', '$count32'] }
+                count: { $add: ['$count33', '$count32'] },
+                score: { $add: [{ $multiply: ['$count33', 3] }, { $multiply: ['$count32', 2] }] }
             }
         },
         {
             $sort: {
-                count: -1,
+                score: -1,
                 count33: -1,
                 user: 1
             }
