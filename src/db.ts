@@ -16,11 +16,7 @@ export default () => {
         let url = `mongodb://${user}:${pass}@${host}:${port}/${dababase}`;
 
         await mongoose.connect(url, {
-            keepAlive: true,
-            useNewUrlParser: true,
-            useFindAndModify: false,
-            useUnifiedTopology: true,
-            useCreateIndex: true
+            keepAlive: true
         }).then(() => {
             console.log('Connected to mongodb');
         }).catch((err: Error) => {
