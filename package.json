@@ -30,7 +30,7 @@
     "express-session": "^1.17.1",
     "fast-glob": "^3.2.5",
     "mongoose": "^6.0.0",
-    "passport": "^0.4.1",
+    "passport": "^0.5.0",
     "passport-naver": "^1.0.6",
     "pug": "^3.0.0",
     "serve-favicon": "^2.5.0"
