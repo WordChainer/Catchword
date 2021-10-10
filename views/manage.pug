@@ -17,7 +17,7 @@ block Content
                     } = user;
 
                 .card-wrapper.col-lg-3.col-md-4.col-6.p-2
-                    .card.bg-dark.text-white.h-100
+                    .card.bg-dark.text-white.h-100(class=isBanned ? 'card-disabled' : '')
                         if isAdmin
                             +icon('crown')(class="text-warning mt-2 ml-1 position-absolute")
                         img.card-img-top.mx-auto.mt-3.rounded-circle.circle-image(src=image alt=nickname)
@@ -27,4 +27,7 @@ block Content
                             a.btn.btn-sm.btn-info.mr-1(href=`/userinfo/${id}`) 정보
                             a.btn.btn-sm.btn-success.mr-1(href=`/logs/${id}`) 로그
                             if !isBanned && !isAdmin
-                                button.btn.btn-sm.btn-danger 차단
+                                button.ban.btn.btn-sm.btn-danger(data-target=id) 차단
+
+block JS
+    script(src="js/manage.min.js")

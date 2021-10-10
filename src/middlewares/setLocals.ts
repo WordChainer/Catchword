@@ -9,6 +9,7 @@ export default async function setLocals(req: Request, res: Response, next: NextF
         let user = await UserController.FindUser(req.user.id);
 
         res.locals.isAdmin = user.isAdmin;
+        res.locals.isBanned = user.isBanned;
     }
 
     next();

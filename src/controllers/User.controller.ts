@@ -20,4 +20,20 @@ async function FindUser(id: IUser['id']): Promise<IUser> {
     return await User.findOne({ id });
 }
 
-export default { CreateUser, FindUser };
+async function BanUser(id: IUser['id']): IUser['nickname'] {
+    try {
+        let user = await FindUser(id);
+
+        if (user.isBanned || user.isAdmin) {
+            throw new Error();
+        }
+
+        await User.updateOne({ id }, { $set: { isBanned: true } });
+
+        return user.nickname;
+    } catch (err: Error) {
+        return '';
+    }
+}
+
+export default { CreateUser, FindUser, BanUser };

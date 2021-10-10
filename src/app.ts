@@ -13,6 +13,7 @@ import redirectToHttps from './middlewares/redirectToHttps';
 import setSession from './middlewares/setSession';
 import setLocals from './middlewares/setLocals';
 import logRequests from './middlewares/logRequests';
+import checkBanned from './middlewares/checkBanned';
 
 export default class App {
     public app: express.Application;
@@ -65,6 +66,7 @@ export default class App {
         this.app.use(passport.session());
         this.app.use(setLocals);
         this.app.use(logRequests);
+        this.app.use(checkBanned);
     }
 
     private async initializeRouters() {

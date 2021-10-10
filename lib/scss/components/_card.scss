@@ -9,4 +9,8 @@
         height: 10vw;
         object-fit: cover;
     }
+
+    &-disabled {
+        opacity: 0.2;
+    }
 }

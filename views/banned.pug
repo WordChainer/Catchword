@@ -1,0 +1,26 @@
+include module
+
+style.
+    html {
+        background: #333;
+    }
+
+    img {
+        margin-top: -50px;
+        margin-bottom: -20px;
+        transform: rotate(10deg);
+    }
+
+    .content {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-size: 2rem;
+        transform: translate(-50%, -50%);
+    }
+
+.content
+    img(src="https://i.imgur.com/yDtDY7J.png")
+    p 당신은 차단 당했습니다.
+    p 차단 해제를 원하면 아래의 이메일로 메일을 보내십시오.
+    span: b= EMAIL
