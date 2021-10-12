@@ -12,10 +12,10 @@ Catchword © xCrypt0r
 Authored and maintained by xCrypt0r  
 
 > GitHub [**@xCrypt0r**][my github]  
-> Discord **xCrypt0r#9534**  
+> Discord **xCrypt0r#5695**  
 
 ## Requirements
--   Node >= 14
+-   Node >= 14.18.0
 
 [catchword]: http://catchword.ga
 [typescript]: https://www.typescriptlang.org
