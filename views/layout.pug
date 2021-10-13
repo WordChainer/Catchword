@@ -54,6 +54,7 @@ html(lang="ko")
                         if isAdmin
                             +menu(routes.manage, labels.manage, 'wrench')
                             +menu(routes.download, labels.download, 'download')(target="_blank")
+                        +menu(routes.rules, labels.rules, 'list-alt')
                         +menu(routes.help, labels.help, 'question-circle', 'far')
                         +menu(routes.github, labels.github, 'github', 'fab')(target="_blank")
                         if !isAuthenticated
@@ -74,6 +75,10 @@ html(lang="ko")
                             h5#editorTitle.modal-title
                                 +icon('edit')(class="mx-1 text-dark")
                                 span.text-dark 단어편집
+                                p.mt-2.mb-n2.font-weight-bold.text-dark
+                                    span 단어를 편집할 때에는 
+                                    span: a.text-danger(href="/rules") 규칙
+                                    span 을 준수해 주시기 바랍니다.
                             button.close(type="button" data-dismiss="modal" aria-label="Close")
                                 span(aria-hidden="true") ×
                         .modal-body

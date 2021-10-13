@@ -1,0 +1,26 @@
+extends layout
+
+mixin bullet(text)
+    p.my-2 &#9642; #{text}
+
+block Content
+    .container-fluid
+        .row.text-white
+            .col-md-12.my-3
+                blockquote.blockquote.rounded.bg-dark.mt-1.p-4
+                    p 캐치워드(이하 '갑')는 비영리적이며 파워쿵쿵따 유저(이하 '을')의 편의를 위한 공익적 목적으로 운영되고 있기에 '을'은 '갑'이 정한 규칙을 준수할 당위성을 가진다.
+                    p '갑'을 이용하는 순간부터 '을'은 아래의 내용에 동의한 것으로 간주한다.
+                    footer.blockquote-footer.text-right.text-white= AUTHOR
+                blockquote.blockquote.rounded.bg-dark.mt-1.p-4
+                    h2.mb-4 규칙
+                    p '을'은 '갑'에 대한 크롤링, DDoS(분산 서비스 거부 공격) 등 서버에 과도한 부담을 주는 일체의 행위를 할 수 없다.
+                    p '을'은 '갑'에 대해 파라미터 변조, SQL 인젝션 등의 해킹을 할 수 없다.
+                    p '을'은 파워쿵쿵따에서 사용할 수 없는 단어를 '갑'에 등록할 수 없다.
+                    p
+                        span '을'은 검수(
+                        span: +icon('check', 'fas')(class="mx-2 text-success")
+                        span )가 완료된 단어를 '갑'의 허락 없이 임의로 삭제할 수 없다.
+                    p
+                        span '갑'은 '을'이 규칙을 어긴 경우 '을'을 
+                        span.text-danger 영구 차단
+                        span 할 수 있다.
