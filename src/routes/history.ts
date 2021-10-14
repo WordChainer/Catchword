@@ -1,14 +1,12 @@
 import { Router, Request, Response } from 'express';
-import dayjs from 'dayjs';
+import checkLogin from '../middlewares/checkLogin';
 import EditLogController from '../controllers/EditLog.controller';
+import dayjs from 'dayjs';
 
 const router = Router();
 
+router.use(checkLogin);
 router.get('/', async (req: Request, res: Response) => {
-    if (!req.user) {
-        return res.status(400).send('로그인 후 이용가능합니다!');
-    }
-
     res.render('history', {
         dayjs,
         editLogs: await EditLogController.GetAllEditLogs()
