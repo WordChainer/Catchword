@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
+import dayjs from 'dayjs';
 import checkLogin from '../middlewares/checkLogin';
 import EditLogController from '../controllers/EditLog.controller';
-import dayjs from 'dayjs';
 
 const router = Router();
 

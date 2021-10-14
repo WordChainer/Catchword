@@ -3,13 +3,13 @@ import { execSync as exec } from 'child_process';
 import AdmZip from 'adm-zip';
 import * as path from 'path';
 import * as fs from 'fs';
-import checkAdmin from '../utils/checkAdmin';
+import checkAdmin from '../middlewares/checkAdmin';
 
 const router = Router();
 const zip = new AdmZip();
 const cwd = process.cwd();
 
-router.all('*', checkAdmin);
+router.use(checkAdmin);
 router.get('/', (req: Request, res: Response) => {
     let id = Math.random().toString(36).substring(7),
         target = path.join(cwd, 'words_' + id + '.zip');
