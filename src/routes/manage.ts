@@ -1,10 +1,12 @@
 import { Router, Request, Response } from 'express';
 import dayjs from 'dayjs';
+import checkLogin from '../middlewares/checkLogin';
 import checkAdmin from '../middlewares/checkAdmin';
 import User from '../models/User.model';
 
 const router = Router();
 
+router.use(checkLogin);
 router.use(checkAdmin);
 router.get('/', async (req: Request, res: Response) => {
     let users = await User.find().sort({ isAdmin: -1, date: 1 });

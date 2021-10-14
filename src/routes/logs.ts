@@ -1,11 +1,13 @@
 import { Router, Request, Response } from 'express';
 import dayjs from 'dayjs';
+import checkLogin from '../middlewares/checkLogin';
 import checkAdmin from '../middlewares/checkAdmin';
 import SearchLog from '../models/SearchLog.model';
 import UserController from '../controllers/User.controller';
 
 const router = Router();
 
+router.use(checkLogin);
 router.use(checkAdmin);
 router.get('/:id/:page?', async (req: Request, res: Response) => {
     let perPage = 100,
