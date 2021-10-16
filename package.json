@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xCrypt0r/Catchword.git"
+    "url": "git+https://github.com/WordChainer/Catchword.git"
   },
   "keywords": [
     "ggt"
@@ -18,9 +18,9 @@
   "author": "xCrypt0r",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/xCrypt0r/Catchword/issues"
+    "url": "https://github.com/WordChainer/Catchword/issues"
   },
-  "homepage": "https://github.com/xCrypt0r/Catchword#readme",
+  "homepage": "https://github.com/WordChainer/Catchword#readme",
   "dependencies": {
     "adm-zip": "^0.5.1",
     "compression": "^1.7.4",
