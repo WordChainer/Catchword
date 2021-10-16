@@ -10,10 +10,15 @@ const router = Router();
 router.use(checkLogin);
 router.use(checkAdmin);
 router.get('/:id/:page?', async (req: Request, res: Response) => {
+    let user = await UserController.FindUser(req.params.id);
+
+    if (!user) {
+        return res.send('존재하지 않는 사용자입니다.');
+    }
+
     let perPage = 100,
         max = 7,
         page = req.params.page ?? 1,
-        user = await UserController.FindUser(req.params.id),
         total = await SearchLog.countDocuments({ user: user._id }),
         start = +page,
         end = Math.ceil(total / perPage),

@@ -13,8 +13,13 @@ router.get('/:id', async (req: Request, res: Response) => {
         return res.send('접근 권한이 없습니다!');
     }
 
-    let target = await UserController.FindUser(req.params.id),
-        searchCount = await SearchLog.countDocuments({ user: target._id }),
+    let target = await UserController.FindUser(req.params.id);
+
+    if (!target) {
+        return res.send('존재하지 않는 사용자입니다.');
+    }
+
+    let searchCount = await SearchLog.countDocuments({ user: target._id }),
         words = await Word.aggregate([
             {
                 $match: {
