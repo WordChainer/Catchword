@@ -9,4 +9,4 @@ export default () => {
     options.cert = fs.readFileSync(path.join(__dirname, '../certs', Const.SSL_OPTIONS.CERT));
 
     return options;
-}
+};

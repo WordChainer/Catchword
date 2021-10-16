@@ -7,7 +7,7 @@ router.get('/', async (req: Request, res: Response) => {
     let ranks = await Word.aggregate([
         {
             $match: {
-                date: { $gte: new Date("2020-12-22T00:00:00.000Z") }
+                date: { $gte: new Date('2020-12-22T00:00:00.000Z') }
             }
         },
         {

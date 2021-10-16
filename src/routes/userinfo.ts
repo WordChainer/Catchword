@@ -23,7 +23,7 @@ router.get('/:id', async (req: Request, res: Response) => {
         words = await Word.aggregate([
             {
                 $match: {
-                    date: { $gte: new Date("2020-12-22T00:00:00.000Z") },
+                    date: { $gte: new Date('2020-12-22T00:00:00.000Z') },
                     user: target._id
                 }
             },
