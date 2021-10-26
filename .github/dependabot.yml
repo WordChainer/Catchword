@@ -1,11 +1,9 @@
 version: 2
 updates:
-- package-ecosystem: npm
+- package-ecosystem: "npm"
   directory: "/"
   schedule:
-    interval: daily
+    interval: "daily"
+    time: "18:00"
+    timezone: "Asia/Seoul"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: "@types/node"
-    versions:
-    - 15.0.0
