@@ -100,7 +100,9 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
         return [];
     }
 
-    SearchLogController.CreateSearchLog(keyword, user);
+    if (!user.isBot) {
+        SearchLogController.CreateSearchLog(keyword, user);
+    }
 
     if (/^-/.test(keyword)) {
         reverse = true;
