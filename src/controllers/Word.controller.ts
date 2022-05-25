@@ -86,7 +86,11 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
     keyword = keyword.replace(/\s/g, '');
     length = +length;
 
-    if (keyword === '' || /^\.{1,3}$/.test(keyword)) {
+    let rgxJaum = /[ㄱ-ㅎ]+/;
+    let rgxJaumDeficient = new RegExp(`^[ㄱ-ㅎ]{1,${length - 1}}$`);
+    let rgxHyphenOrComma = /-|\./;
+
+    if (keyword === '' || /^-?\.{1,3}$/.test(keyword)) {
         return [];
     }
 
@@ -94,9 +98,11 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
         return [];
     }
 
-    let rgxJaum = new RegExp(`^[ㄱ-ㅎ]{1,${length - 1}}$`);
+    if (rgxJaum.test(keyword) && rgxHyphenOrComma.test(keyword)) {
+        return [];
+    }
 
-    if (rgxJaum.test(keyword)) {
+    if (rgxJaumDeficient.test(keyword)) {
         return [];
     }
 
