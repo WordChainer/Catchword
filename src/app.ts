@@ -70,14 +70,24 @@ export default class App {
     }
 
     private async initializeRouters() {
-        let routes = await glob('*', { cwd: 'src/routes' });
+        let routes = await glob('*', {
+            cwd: 'src/routes',
+            ignore: ['404.ts']
+        });
 
-        routes
-            .map((route: string): string => path.parse(route).name)
-            .forEach(async (route: string) => {
-                let { default: router } = await import(`./routes/${route}`);
+        await Promise.all(
+            routes
+                .map((route: string): string => path.parse(route).name)
+                .map(async (route: string) => {
+                    let { default: router } = await import(`./routes/${route}`);
 
-                this.app.use(route === 'index' ? '/' : `/${route}`, router);
-            });
+                    this.app.use(route === 'index' ? '/' : `/${route}`, router);
+                })
+        );
+
+        let { default: router404 } = await import('./routes/404.ts');
+
+        this.app.use(router404);
     }
+
 }
