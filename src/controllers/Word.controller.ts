@@ -86,15 +86,19 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
     keyword = keyword.replace(/\s/g, '');
     length = +length;
 
-    let rgxJaum = /[ㄱ-ㅎ]+/;
-    let rgxJaumDeficient = new RegExp(`^[ㄱ-ㅎ]{1,${length - 1}}$`);
-    let rgxHyphenOrComma = /-|\./;
+    let rgxCommas = /^-?\.{1,3}$/,
+        rgxValid = /^-?[ㄱ-ㅎ가-힣.]+$/,
+        rgxValidJaum = /[ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ]/g,
+        rgxJaum = /[ㄱ-ㅎ]+/,
+        rgxJaumDeficient = new RegExp(`^[ㄱ-ㅎ]{1,${length - 1}}$`),
+        rgxHyphenOrComma = /-|\./,
+        rgxWithoutHyphen = /(?<=-).+/;
 
-    if (keyword === '' || /^-?\.{1,3}$/.test(keyword)) {
+    if (keyword === '' || rgxCommas.test(keyword)) {
         return [];
     }
 
-    if (!/^-?[ㄱ-ㅎ가-힣.]+$/.test(keyword)) {
+    if (!rgxValid.test(keyword)) {
         return [];
     }
 
@@ -110,12 +114,12 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
         SearchLogController.CreateSearchLog(keyword, user);
     }
 
-    if (/^-/.test(keyword)) {
+    if (keyword.startsWith('-')) {
         reverse = true;
-        keyword = keyword.match(/(?<=-).+/)[0];
+        keyword = keyword.match(rgxWithoutHyphen)[0];
     }
 
-    keyword = keyword.replace(/[ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ]/g, makeHangulRange);
+    keyword = keyword.replace(rgxValidJaum, makeHangulRange);
 
     let rgx = keyword.includes('.') ? `^${keyword}$` : reverse ? `${keyword}$` : `^${keyword}`,
         conditions = [
@@ -127,25 +131,24 @@ async function FindWord({ keyword, length, user }: IFindWordInput): Promise<IWor
         conditions.push({ isHidden: false });
     }
 
-    return await Word.find({ $and: conditions })
+    return await Word
+        .find({ $and: conditions })
         .populate({
             path: 'user',
             select: 'nickname'
         })
-        .select({
-            _id: false
-        })
+        .select({ _id: false })
         .sort({ value: 1 });
 }
 
-function hangulAssemble(ca, cb, cc) {
+function assembleHangul(ca, cb, cc) {
     return String.fromCharCode(ca * 588 + cb * 28 + cc + 44032);
 }
 
 function makeHangulRange(jaum) {
     let code = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ'.indexOf(jaum);
 
-    return `[${hangulAssemble(code, 0, 0)}-${hangulAssemble(code, 20, 27)}]`;
+    return `[${assembleHangul(code, 0, 0)}-${assembleHangul(code, 20, 27)}]`;
 }
 
 
