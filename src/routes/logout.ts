@@ -7,8 +7,9 @@ const logger = new Logger();
 router.get('/', (req: Request, res: Response) => {
     req.session.destroy(() => {
         logger.error(`Logout: ${req.user.nickname}`);
-        req.logout();
-        res.redirect('/');
+        req.logout(() => {
+            res.redirect('/');
+        });
     });
 });
 
