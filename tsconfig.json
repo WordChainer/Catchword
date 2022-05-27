@@ -3,7 +3,7 @@
     "transpileOnly": true
   },
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "moduleResolution": "node",
     "module": "CommonJS",
     "outDir": "./dist",
