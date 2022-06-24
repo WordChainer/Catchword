@@ -1,0 +1,7 @@
+SHELL=/bin/bash
+
+# 정각마다 Catchword DB 백업
+0 * * * * /home/ubuntu/Catchword/dumpDB.sh > /dev/null 2>&1
+
+# 5분마다 DB상태 체크
+*/5 * * * * /home/ubuntu/Catchword/checkMongo.sh > /dev/null 2>&1
